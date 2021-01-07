@@ -1,0 +1,83 @@
+﻿<%- include('../fragments/header.ejs') %>
+
+    <main>
+        <h2><%= pageTitle %></h2>
+        <form method="post" action="<%=formAction%>" id="form" class="form" novalidate onsubmit="return validateForm();">
+            <input type="hidden" name="_id" value="<%= emp._id %>">
+            <label for="firstName">Imię:<sup> <abbr title="required">*</abbr>  </sup></label>
+            <input required type="text" name="firstName" id="firstName" placeholder="2-60 znaków" value="<%= firstName %>"
+            <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+            <span id="errorFirstName" class="errors-text"></span>
+            
+            <label for="lastName">Nazwisko:<sup> <abbr title="required">*</abbr>  </sup></label>
+            <input required type="text" name="lastName" id="lastName" placeholder="2-60 znaków" value="<%= lastName %>"
+            <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+            <span id="errorLastName" class="errors-text"></span>
+            
+            <label for="tel">Numer Telefonu:<sup> <abbr title="required">*</abbr>  </sup></label>
+            <input required type="text"  name="tel" id="tel" placeholder="np 690700420" value="<%= tel %>"
+            <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+            <span id="errorTelNumber" class="errors-text"></span>
+            
+            <label for="email">E-Mail: <sup> <abbr title="required">*</abbr>  </sup></label>
+            <input type="text" name="email" id="email" placeholder="np vietstreet@food.pl" value="<%= email %>"
+            <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+            <span id="errorEmail" class="errors-text"></span>
+    
+            
+            <div class="form-buttons">
+                
+                <% if (formMode == 'edit') { %>
+                    
+                        <input  type="submit" value="Dodaj" class="form-button-submit">Dodaj</input>
+                    
+                    <% } %>
+                <% if (formMode == 'showDetails') { %>
+                   
+                        <a href="/guests/edit/<%= emp._id %>" class="form-button-edit list-actions-button-edit">Edytuj</a>
+                   
+                    <% } %>
+                    <% if (formMode == 'createNew') { %>
+                   
+                            <input type="submit" value="Dodaj" class="form-button-submit" />
+                   
+                        <% } %>
+                <p id="errorsSummary" class="errors-text errors-summary"></p>
+                
+                <a href="/guests" class="form-button-cancel">Anuluj</a>
+            </div>
+        </form>
+        <% if (formMode == 'showDetails' || formMode == 'edit') { %>
+            <h2>
+                Szczegóły rezerwacji
+            </h2>
+            <table class="table-list">
+                <thead>
+                <tr>
+                    <th>Numer stolika</th>
+                    <th>Data</th>
+                    <th>Godzina</th>
+                    <th>Liczba gości</th>
+                </tr>
+                </thead>
+                <tbody>
+                    
+                <% for (let e of emp.tables) { %>
+                    
+                    <tr>
+                        <td><%= e.reservations.tableNumber %></td>
+                        <td><%= e.reservations.date %></td>
+                        <td><%= e.reservations.time %></td>
+                        <td><%= e.reservations.numberOfGuests %></td>
+                    </tr>
+                <% } %>
+                </tbody>
+            </table>
+            <% } %>
+            
+    </main>
+
+     <script type="application/javascript" src="/js/validationGuestForm.js"></script>
+
+
+    <%- include('../fragments/footer.ejs') %>

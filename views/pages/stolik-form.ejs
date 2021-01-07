@@ -1,0 +1,23 @@
+﻿<%- include('../fragments/header.ejs') %>
+
+    <main>
+        <h2>Nowy stolik</h2>
+        <form class="form">
+
+            <label for="numerStolika">Numer stolika<sup> <abbr title="required">*</abbr>  </sup></label>
+            <input type="text" name="numerStolika" id="numerStolika" value="<%= number %>"
+            <%= (formMode == 'createNew') ? 'disabled' : '' %>/>
+            <label for="guestNr">Max. liczba osób:<sup> <abbr title="required">*</abbr>  </sup></label>
+            <input type="text" name="guestNr" id="GuestNr" value="<%= maxGuests %>"
+            <%= (formMode == 'createNew') ? 'disabled' : '' %>/>
+            
+            <div class="form-buttons">
+
+                <input type="submit" value="Dodaj" class="form-button-submit" />
+                <a href="/tables" class="form-button-cancel">Anuluj</a>
+            </div>
+        </form>
+
+    </main>
+ 
+    <%- include('../fragments/footer.ejs') %>

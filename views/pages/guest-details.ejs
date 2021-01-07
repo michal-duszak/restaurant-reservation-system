@@ -1,0 +1,59 @@
+﻿<%- include('../fragments/header.ejs') %>
+
+
+    <main>
+        <h2><%= pageTitle %></h2>
+        <form class="form" action="<%=formAction%>">
+
+            <label for="firstName">Imie</label>
+            <input type="text" name="firstName" id="firstName" value="<%= firstName %>" disabled 
+            <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+            <label for="lastName">Nazwisko:</label>
+            <input type="text" name="lastName" id="lastName" value="<%= lastName %>" disabled 
+            <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+            <label for="telNumber">Numer telefonu:</label>
+            <input type="text" name="telNumber" id="telNumber" value="<%= tel %>" disabled 
+            <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+            <label for="mail">E-Mail:</label>
+            <input type="text" name="mail" id="mail" value="<%= email %>" disabled 
+            <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+            <label for="NIP">NIP:</label>
+            <input type="text" name="NIP" id="NIP" value="<%= nip %>" disabled 
+            />
+           
+                
+			<a href="guest-edit1.html" class=form-button-submit> Edytuj </a>
+			
+            
+        </form>
+
+        <h2>Rezerwacje</h2>
+
+        <table class="table-list">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Godzina</th>
+                    <th>Numer stolika</th>
+                    <th>Ilość osób</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>24/04/20</td>
+                    <td>19:00</td>
+                    <td>2</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                </tr>
+
+            </tbody>
+        </table>
+
+        <br><a href="guest-list.html" class=form-button-submit> Powrót </a>
+
+    </main>
+ 
+    <%- include('../fragments/footer.ejs') %>

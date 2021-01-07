@@ -1,0 +1,43 @@
+<%- include('../fragments/header.ejs') %>
+
+    <main>
+        <h2>Lista Gości</h2>
+        <table class="table-list">
+            <thead>
+                <tr>
+                    <th>Imię</th>
+                    <th>Nazwisko</th>
+                    <th>Email</th>
+                    <th>Akcje</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tbody>
+                    <% for (let emp of emps) { %>
+                        <tr>
+                            <td><%= emp.firstName %></td>
+                            <td><%= emp.lastName %></td>
+                            <td><%= emp.email %></td>
+                            <td class="table-list">
+                        
+                                <ul class="list-actions">
+                                    <li><a href="/guests/details/<%=emp._id%>" class="list-actions-button-details list-actions-button-details">Szczegóły</a></li>
+                                    <li><a href="/guests/edit/<%=emp._id%>" class="list-actions-button-edit list-actions-button-details">Edytuj</a></li>
+                                    <li><a href="/guests/delete/<%=emp._id%>" class="list-actions-button-delete list-actions-button-details">Usuń</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                    <% } %>
+         
+        </tbody>
+        </table>
+
+        <p><a href="guests/add" class="button-add">Dodaj nowego gościa</a></p>
+        
+
+
+    </main>
+
+
+    <%- include('../fragments/footer.ejs') %>

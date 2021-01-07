@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css" />
+    <title>VSF</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>Viet Street Food</h1>
+        <img src="images/vsf.jfif" width="100" height="100" alt="VSF Logo">
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Strona główna</a></li>
+            <li><a href="guest-list.html">Goście</a></li>
+            <li><a href="rezerwacje-list.html">Rezerwacje</a></li>
+            <li><a href="stoliki-edit-html">Stoliki</a></li>
+        </ul>
+    </nav>
+
+
+    <main>
+        <h2>Edycja</h2>
+        <form  class="form" method="post"  novalidate onsubmit="return validateForm();">
+            <input type="hidden" name="_id" value="23">
+            <label for="firstNsmr">Imie</label>
+            <input type="text" name="firstName" id="firstName" value="Jan" disabled />
+            <label for="lastName">Nazwisko:</label>
+            <input type="text" name="lastName" id="lastName" value="Kowalski" disabled />
+            <label for="telNumber">Numer telefonu:</label>
+            <input type="text" name="telNumber" id="telNumber" value="123-456-789" disabled />
+            <label for="mail">E-Mail:</label>
+            <input type="text" name="mail" id="mail" value="jan@kwol.pl" disabled />
+            <label for="NIP">NIP:</label>
+            <input type="text" name="NIP" id="NIP" value="6754329864" disabled />
+           
+            <div class="form-buttons">
+
+                <input type="submit" value="Zapisz" class="form-button-submit" />
+                <a href="guest-list.html" class="form-button-cancel">Anuluj</a>
+                
+            </div>
+        </form>
+
+    </main>
+    <footer>
+        Thanh Cong Pham Trong S19263
+    </footer>
+
+
+</body>
+</html>

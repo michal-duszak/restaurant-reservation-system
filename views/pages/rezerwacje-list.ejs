@@ -1,0 +1,70 @@
+<%- include('../fragments/header.ejs') %>
+
+    <main>
+        <h2>Rezerwacje</h2>
+        
+        <table class="table-list">
+            <thead>
+                <tr>
+                    
+                    <th>Nazwisko</th>
+                    <th>Data</th>
+                    <th>Godzina</th>
+                    <th>Akcje</th>
+
+                </tr>
+            </thead>
+
+
+            <tbody>
+                <tr>
+                    
+                    <td>Gom</td>
+                    <td>24/04/20</td>
+                    <td>19:00</td>
+                    <td class="table-list-actions">
+                        <ul>
+
+                        <li><a href="rezerwacje-details1.html" class="list-actions-button-details">Szczegóły</a></li>                       
+                        <li><a href="rezerwacje-edit1.html" class="list-actions-button-edit">Edytuj</a></li>  
+                        <li><a href="" class="list-actions-button-delete">Usuń</a></li>
+
+                        </ul>
+                </tr>
+
+                <tr>
+                    
+                    <td>Mom</td>
+                    <td>22/02/20</td>
+                    <td>13:00</td>
+                    <td class="table-list-actions">
+                        <ul>
+                            <li><a href="rezerwacje-details1.html" class="list-actions-button-details">Szczegóły</a></li>
+                            <li><a href="rezerwacje-edit2.html" class="list-actions-button-edit">Edytuj</a></li>  
+                            <li><a href="" class="list-actions-button-delete">Usuń</a></li>
+
+                        </ul>
+                </tr>
+
+                <tr>
+                    
+                    <td>Express</td>
+                    <td>26/02/20</td>
+                    <td>15:00</td>
+                    <td class="table-list-actions">
+                        <ul>
+                            <li><a href="rezerwacje-details1.html" class="list-actions-button-details">Szczegóły</a></li>
+                            <li><a href="rezerwacje-edit3.html" class="list-actions-button-edit">Edytuj</a></li>  
+                            <li><a href="" class="list-actions-button-delete">Usuń</a></li>
+
+                        </ul>
+
+            </tbody>
+        </table>
+
+        <p><a href="/reservations/add" class="button-add"> Dodaj rezerwacje </a></p>
+
+    </main>
+
+
+    <%- include('../fragments/footer.ejs') %>

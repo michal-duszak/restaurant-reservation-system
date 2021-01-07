@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css" />
+    <title>VSF</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>Viet Street Food</h1>
+        <img src="images/vsf.jfif" width="100" height="100" alt="VSF Logo">
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Strona główna</a></li>
+            <li><a href="guest-list.html">Goście</a></li>
+            <li><a href="rezerwacje-list.html">Rezerwacje</a></li>
+            <li><a href="stoliki-list.html">Stoliki</a></li>
+        </ul>
+    </nav>
+
+
+    <main>
+        <h2>Edycja</h2>
+        <form class="form">
+
+            <label for="guests">Wybierz gościa:</label>
+            <select name="guests" id="guests" >
+                <option value="guest1">Jan Kowalski</option>
+                <option value="guest2">Ada Mom</option>
+                <option value="guest3">Josh Goralski</option>
+                <option value="guest4">Matylda Lipek</option>
+                <option value="guest4">Ali Express</option>
+            </select>
+            <label for="date">Data:</label>
+            <input type="text" name="date" id="date" value="24/04/20"/>
+            <label for="time">Godzina:</label>
+            <input type="text" name="time" id="time" value="19:00"/>
+            <label for="liczbaOsob">Liczba osób:</label>
+            <input type="text" name="liczbaOsob" id="liczbaOsob" value="2"/>
+            <label for="numerStolika">Numer stolika:</label>
+            <select name="numerStolika" id="numerStolika" >
+                <option value="stolik1">1</option>
+                <option value="stolik2">2</option>
+                <option value="stolik3">3</option>
+                <option value="stolik4">4</option>
+                <option value="stolik5">5</option>
+                <option value="stolik6">6</option>
+            </select>
+           
+            <div class="form-buttons">
+
+                <input type="submit" value="Zapisz" class="form-button-submit" />
+                <a href="rezerwacje-list.html" class="form-button-cancel">Anuluj</a>
+                
+            </div>
+        </form>
+
+    </main>
+    <footer>
+        Thanh Cong Pham Trong S19263
+    </footer>
+
+
+</body>
+</html>

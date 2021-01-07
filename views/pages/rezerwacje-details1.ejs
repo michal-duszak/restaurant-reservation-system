@@ -1,0 +1,32 @@
+﻿<%- include('./fragments/header.ejs') %>
+
+
+    <main>
+        <h2>Szczegóły rezerwacji</h2>
+        <form class="form">
+
+            <label for="firstName">Imie</label>
+            <input type="text" name="firstName" id="firstName" value="Jan" disabled />
+            <label for="lastName">Nazwisko:</label>
+            <input type="text" name="lastName" id="lastName" value="Kowalski" disabled />
+            <label for="date">Data:</label>
+            <input type="date" name="date" id="date" value="24.04.2020" />
+            <label for="time">Godzina:</label>
+            <input type="time" name="time" id="time" value="19:00" />
+            <label for="stolik">Stolik:</label>
+            <input type="text" name="stolik" id="stolik" value="1" />
+            <label for="liczbaGuest">Liczba gości:</label>
+            <input type="number" name="liczbaGuest" id="liczbaGuest" value="1" />
+                
+			<a href="" class=form-button-submit> Zapisz </a>
+			
+            
+        </form>
+
+    
+
+        <br><a href="guest-list.html" class=form-button-submit> Powrót </a>
+
+    </main>
+
+    <%- include('./fragments/footer.ejs') %>

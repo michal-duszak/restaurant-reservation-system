@@ -1,0 +1,54 @@
+﻿<%- include('../fragments/header.ejs') %>
+
+    <main>
+        <h2>Nowa rezerwacja</h2>
+        <form class="form" id="form" novalidate onsubmit="return validateForm();">
+
+            <label for="guest">Wybierz gościa:</label>
+            <select name="guest" id="guest" >
+                <option selected disabled hidden style='display: none' value=''></option>
+                <option value="guest1">Jan Kowalski</option>
+                <option value="guest2">Ada Mom</option>
+                <option value="guest3">Josh Goralski</option>
+                <option value="guest4">Matylda Lipek</option>
+                <option value="guest4">Ali Express</option>
+            </select>
+            
+            <span id="errorGuest" class="errors-text"></span>
+
+            <label for="date">Data:<sup> <abbr title="required">*</abbr>  </sup></label>
+            <input type="text" name="date" id="date" placeholder="dd-mm-rrrr" />
+            <span id="errorDate" class="errors-text"></span>
+
+            <label for="time">Godzina:<sup> <abbr title="required">*</abbr>  </sup></label>
+            <input type="text" name="time" id="time" placeholder="hh:mm" />
+            <span id="errorTime" class="errors-text"></span>
+
+            <label for="guestsCount">Liczba Osób:</label>
+            <input type="text" name="guestsCount" id="guestsCount" placeholder="od 1 do 6 osób"/>
+            <span id="errorGuestsCount" class="errors-text"></span>
+
+            <label for="tableName">Numer stolika:</label>
+            <select name="tableName" id="tableName" >
+                <option selected disabled hidden style='display: none' value=''></option>
+                <option value="stolik1">1</option>
+                <option value="stolik2">2</option>
+                <option value="stolik3">3</option>
+                <option value="stolik4">4</option>
+                <option value="stolik5">5</option>
+                <option value="stolik6">6</option>
+            </select>
+            <span id="errorTableName" class="errors-text"></span>
+
+            <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text errors-summary"></p>
+                <input type="submit" value="Dodaj" class="form-button-submit" />
+                <a href="rezerwacje-list.html" class="form-button-cancel">Anuluj</a>
+            </div>
+        </form>
+
+    </main>
+  
+<script src="/js/validationReservationForm.js"></script>
+
+<%- include('../fragments/footer.ejs') %>
