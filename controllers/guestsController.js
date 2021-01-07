@@ -14,7 +14,7 @@ exports.showGuestsList = (req, res, next) => {
 exports.showAddGuestForm = (req, res, next) => {
     const validationErrors = [];
     res.render('pages/guest-form', {
-        guest: {},
+        guests: {},
         pageTitle: 'Dodaj gościa',
         formMode: 'createNew',
         btnLabel: "Dodaj gościa",
@@ -28,6 +28,24 @@ exports.showAddGuestForm = (req, res, next) => {
      }); 
 };  
 
+exports.showGuestDetails = (req, res, next) => {
+    const empId = req.params.empId;
+    GuestRepository.getGuestById(empId).then((emp) => {
+        res.render('pages/guest-form', {
+            emp: emp,
+            firstName: emp.firstName,
+            lastName: emp.lastName,
+            email: emp.email,
+            tel: emp.tel,
+            nip: emp.nip,
+            formMode: 'showDetails',
+            pageTitle: 'Szczegóły gościa',
+            formAction: '',
+            navLocation: 'guests'
+        });
+         
+    })
+};
 
 // exports.showAddGuestForm = (req, res, next) => {
 //     const validationErrors = [];
@@ -70,24 +88,6 @@ exports.showAddGuestForm = (req, res, next) => {
 
 
 
-exports.showGuestDetails = (req, res, next) => {
-    const empId = req.params.empId;
-    GuestRepository.getGuestById(empId).then((emp) => {
-        res.render('pages/guest-form', {
-            emp: emp,
-            firstName: emp.firstName,
-            lastName: emp.lastName,
-            email: emp.email,
-            tel: emp.tel,
-            nip: emp.nip,
-            formMode: 'showDetails',
-            pageTitle: 'Szczegóły gościa',
-            formAction: '',
-            navLocation: 'guests'
-        });
-         
-    })
-};
   
   
 

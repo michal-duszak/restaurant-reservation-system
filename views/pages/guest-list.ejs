@@ -14,17 +14,17 @@
 
             <tbody>
                 <tbody>
-                    <% for (let emp of emps) { %>
+                    <% for (let guest of guests) { %>
                         <tr>
-                            <td><%= emp.firstName %></td>
-                            <td><%= emp.lastName %></td>
-                            <td><%= emp.email %></td>
+                            <td><%= guest.firstName %></td>
+                            <td><%= guest.lastName %></td>
+                            <td><%= guest.email %></td>
                             <td class="table-list">
                         
                                 <ul class="list-actions">
-                                    <li><a href="/guests/details/<%=emp._id%>" class="list-actions-button-details list-actions-button-details">Szczegóły</a></li>
-                                    <li><a href="/guests/edit/<%=emp._id%>" class="list-actions-button-edit list-actions-button-details">Edytuj</a></li>
-                                    <li><a href="/guests/delete/<%=emp._id%>" class="list-actions-button-delete list-actions-button-details">Usuń</a></li>
+                                    <li><a href="/guests/details/<%=guest._id%>" class="list-actions-button-details list-actions-button-details">Szczegóły</a></li>
+                                    <li><a href="/guests/edit/<%=guest._id%>" class="list-actions-button-edit list-actions-button-details">Edytuj</a></li>
+                                    <li><a href="/guests/delete/<%=guest._id%>" class="list-actions-button-delete list-actions-button-details">Usuń</a></li>
                                 </ul>
                             </td>
                         </tr>

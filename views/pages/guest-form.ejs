@@ -3,7 +3,7 @@
     <main>
         <h2><%= pageTitle %></h2>
         <form method="post" action="<%=formAction%>" id="form" class="form" novalidate onsubmit="return validateForm();">
-            <input type="hidden" name="_id" value="<%= emp._id %>">
+            <input type="hidden" name="_id" value="<%= guests._id %>">
             <label for="firstName">Imię:<sup> <abbr title="required">*</abbr>  </sup></label>
             <input required type="text" name="firstName" id="firstName" placeholder="2-60 znaków" value="<%= firstName %>"
             <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
@@ -34,12 +34,12 @@
                     <% } %>
                 <% if (formMode == 'showDetails') { %>
                    
-                        <a href="/guests/edit/<%= emp._id %>" class="form-button-edit list-actions-button-edit">Edytuj</a>
+                        <a href="/guests/edit/<%= guests._id %>" class="form-button-edit list-actions-button-edit">Edytuj</a>
                    
                     <% } %>
                     <% if (formMode == 'createNew') { %>
                    
-                            <input type="submit" value="Dodaj" class="form-button-submit" />
+                            <input type="submit" value="<%= btnLabel %>" class="form-button-submit"/>
                    
                         <% } %>
                 <p id="errorsSummary" class="errors-text errors-summary"></p>
@@ -62,7 +62,7 @@
                 </thead>
                 <tbody>
                     
-                <% for (let e of emp.tables) { %>
+                <% for (let e of guests.tables) { %>
                     
                     <tr>
                         <td><%= e.reservations.tableNumber %></td>
