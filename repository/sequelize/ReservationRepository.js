@@ -5,19 +5,20 @@ const Guest = require('../../model/sequelize/Guest');
 const Table = require('../../model/sequelize/Table');
 
 exports.getReservations = () => {
-    return Reservation.findAll();
+    return Reservation.findAll(
+    {include: [
+    {
+        model: Guest,
+        as: 'guest'
+    },
+    {
+        model: Table,
+        as: 'table'
+    }]
+});
 };
 //to idzie do findall jak cos pojdize nie tak
-// {include: [
-//     {
-//         model: Table,
-//         as: 'guests'
-//     },
-//     {
-//         model: Table,
-//         as: 'tables'
-//     }]
-// }
+
 exports.getReservationById = (reservationID) => {
     return Reservation.findByPk(reservationID,
         {
