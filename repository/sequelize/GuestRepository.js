@@ -7,43 +7,37 @@ exports.getGuests = () => {
     return Guest.findAll();
 };
 
-exports.getGuestById = (empId) => {
-    console.log(Guest.findByPk(empId));
-    return Guest.findByPk(empId,    
+exports.getGuestById = (guestId) => {
+   // console.log(Guest.findByPk(empId));
+    return Guest.findByPk(guestId,    
         {
             include: [{
-                model: Table,
-                as: 'tables',
+                model: Reservation,
+                as: 'reservations',
                 include: [{
-                    model: Reservation,
-                    as: 'reservations'
+                    model: Table,
+                    as: 'table'
                 }]
             }]
         });
 };
 
-exports.createGuest = (newEmpData) => {
+exports.createGuest = (newGuestData) => {
     return Guest.create({
-        firstName: newEmpData.firstName,
-        lastName: newEmpData.lastName,
-        email: newEmpData.email,
-        tel: newEmpData.tel,
-        nip: newEmpData.nip
+        firstName: newGuestData.firstName,
+        lastName: newGuestData.lastName,
+        email: newGuestData.email,
+        tel: newGuestData.tel,
     });
 };
 
 exports.updateGuest = (guestId, guestData) => {
-    const firstName = guestData.firstName;
-    const lastName = guestData.lastName;
-    const email = guestData.email;
-    const tel = guestData.tel;
-    const nip = guestData.nip;
     return Guest.update(guestData, {where: {_id: guestId }});
 };
 
-exports.deleteGuest = (empId) => {
+exports.deleteGuest = (guestId) => {
     return Guest.destroy({
-        where: { _id: empId }
+        where: { _id: guestId }
     });
 
 }; 

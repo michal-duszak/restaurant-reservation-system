@@ -48,6 +48,7 @@
             </div>
         </form>
         <% if (formMode == 'showDetails' || formMode == 'edit') { %>
+            
             <h2>
                 Szczegóły rezerwacji
             </h2>
@@ -63,7 +64,7 @@
                 <tbody>
                     
                 <% for (let e of gstReservations) { %>
-                    
+                    <% console.log(e) %>
                     <tr>
                         <td><%= e.firstName %></td>
                         <td><%= e.firstName %></td>

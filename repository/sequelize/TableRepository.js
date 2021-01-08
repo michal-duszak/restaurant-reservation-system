@@ -5,45 +5,34 @@ const Guest = require('../../model/sequelize/Guest');
 const Reservation = require('../../model/sequelize/Reservation');
 
 exports.getTables = () => {
-    return Table.findAll({
-        include: [
-            {
-                model: Guest,
-                as: 'guest'
-            },
-            {
-                model: Reservation,
-                as: 'reservations'
-            }]
-    });
+    return Table.findAll();
 };
 
 
 exports.getTableById = (tableID) => {
-    return Table.findByPk(tableID, {
-        include: [
-            {
-                model: Guest,
-                as: 'guest'
-            },
-            {
+    return Table.findByPk(tableID,
+        {
+            include: [{
                 model: Reservation,
-                as: 'reservations'
+                as: 'reservations',
+                include: [{
+                    model: Guest,
+                    as: 'guest'
+                }]
             }]
-    });
+        });
 };
 
-exports.createTable = (data) => {
-    console.log(JSON.stringify(data));
 
+exports.createTable = (newTableData) => {
     return Table.create({
-        number: data.number,
-        maxGuests: data.maxGuests,
+        maxGuests: newTableData.maxGuests,
+        outside: newTableData.outside,
     });
 };
 
-exports.updateTable = (tableID, data) => {
-    return Table.update(data, { where: { _id: tableID } });
+exports.updateTable = (tableID, tableData) => {
+    return Table.update(tableData, { where: { _id: tableID } });
 }
 
 exports.deleteTable = (tableID) => {
@@ -52,6 +41,6 @@ exports.deleteTable = (tableID) => {
     });
 }
 
-exports.deleteManyTabless = (tableIDs) => {
+exports.deleteManyTables = (tableIDs) => {
     return Table.find({ _id: { [Sequelize.Op.in]: tableIDs } })
 }

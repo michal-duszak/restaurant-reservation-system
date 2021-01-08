@@ -3,7 +3,6 @@ const GuestRepository = require('../repository/sequelize/GuestRepository');
 exports.showGuestList = (req, res, next) => {
     GuestRepository.getGuests()
         .then(guests => {
-            console.log("START OF LOG" + JSON.stringify(guests[1]) + "END OF LOG");
             res.render('pages/guest-list', {
                 guests: guests,
                 navLocation: 'guests'
@@ -25,11 +24,14 @@ exports.showAddGuestForm = (req, res, next) => {
     });
 }
 
+
 exports.showEditGuestForm = (req, res, next) => {
     const gstId = req.params.gstId;
+
     const validationErrors = [];
     GuestRepository.getGuestById(gstId)
         .then(gst => {
+            console.log("TO JEST ID I COS SIE DIZEJE" + gstId);
             res.render('pages/guest-form', {
                 gst: gst,
                 gstReservations: gst.reservations,
@@ -46,11 +48,10 @@ exports.showEditGuestForm = (req, res, next) => {
 exports.showGuestDetails = (req, res, next) => {
     const gstId = req.params.gstId;
     const validationErrors = [];
-    GuestRepository.getGuestById(gstId)
-        .then(gst => {
+    GuestRepository.getGuestById(gstId).then(gst => {
+            console.log("START OF LOG" + JSON.stringify(gst) + "END OF LOG");
             res.render('pages/guest-form', {
                 gst: gst,
-                gstReservations: gst.reservations,
                 formMode: 'showDetails',
                 pageTitle: 'Guest details',
                 formAction: '',
@@ -62,6 +63,7 @@ exports.showGuestDetails = (req, res, next) => {
 
 exports.addGuest = (req, res, next) => {
     const gstData = { ...req.body };
+    console.log("START LOGA GST DATA " + JSON.stringify(gstData) + "KONIEC LOGA")
     GuestRepository.createGuest(gstData)
         .then(result => {
             res.redirect('/guests');
