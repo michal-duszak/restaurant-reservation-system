@@ -3,7 +3,7 @@ const Reservation = require("../../model/sequelize/Reservation");
 const Table = require("../../model/sequelize/Table");
 
 exports.getGuests = () => {
-//    console.log(Guest.findAll());
+   // console.log(Guest.findAll());
     return Guest.findAll();
 };
 

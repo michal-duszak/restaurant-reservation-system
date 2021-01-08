@@ -10,7 +10,7 @@ module.exports = () => {
     Table.hasMany(Reservation, {as: 'reservations', foreignKey: {name: 'table_id', allowNull: false}, constraints: true, onDelete: 'CASCADE'});
     Reservation.belongsTo(Table, {as: 'table', foreignKey: {name: 'table_id', allowNull: false} });
 
-    let allGuests, allBoats;
+    let allGuests, allTables;
     return sequelize
         .sync({force: true})
         .then( () => {

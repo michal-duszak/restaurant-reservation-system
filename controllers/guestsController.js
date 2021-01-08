@@ -1,121 +1,127 @@
 const GuestRepository = require('../repository/sequelize/GuestRepository');
 
-
-exports.showGuestsList = (req, res, next) => {
+exports.showGuestList = (req, res, next) => {
     GuestRepository.getGuests()
         .then(guests => {
+            console.log("START OF LOG" + JSON.stringify(guests[1]) + "END OF LOG");
             res.render('pages/guest-list', {
                 guests: guests,
                 navLocation: 'guests'
             });
         });
-};
+}
 
 exports.showAddGuestForm = (req, res, next) => {
     const validationErrors = [];
     res.render('pages/guest-form', {
-        guests: {},
-        pageTitle: 'Dodaj gościa',
+        gst: {},
+        pageTitle: 'New guest',
         formMode: 'createNew',
-        btnLabel: "Dodaj gościa",
+        btnLabel: 'Add guest',
         formAction: '/guests/add',
         navLocation: 'guests',
-        firstName: "",
-        lastName: "",
-        email: "",
-        tel: "",
         validationErrors: validationErrors
-     }); 
-};  
+
+    });
+}
+
+exports.showEditGuestForm = (req, res, next) => {
+    const gstId = req.params.gstId;
+    const validationErrors = [];
+    GuestRepository.getGuestById(gstId)
+        .then(gst => {
+            res.render('pages/guest-form', {
+                gst: gst,
+                gstReservations: gst.reservations,
+                formMode: 'edit',
+                pageTitle: 'Edit guest',
+                btnLabel: 'Edit guest',
+                formAction: '/guests/edit',
+                navLocation: 'guests',
+                validationErrors: validationErrors
+            });
+        });
+}
 
 exports.showGuestDetails = (req, res, next) => {
-    const empId = req.params.empId;
-    GuestRepository.getGuestById(empId).then((emp) => {
-        res.render('pages/guest-form', {
-            emp: emp,
-            firstName: emp.firstName,
-            lastName: emp.lastName,
-            email: emp.email,
-            tel: emp.tel,
-            nip: emp.nip,
-            formMode: 'showDetails',
-            pageTitle: 'Szczegóły gościa',
-            formAction: '',
-            navLocation: 'guests'
-        });
-         
-    })
-};
-
-// exports.showAddGuestForm = (req, res, next) => {
-//     const validationErrors = [];
-//     res.render('pages/guest-form', {
-//         gst: {},
-//         pageTitle: 'Dodaj gościa',
-//         formMode: 'createNew',
-//         btnLabel: "Dodaj gościa",
-//         formAction: '/guests/add',
-//         navLocation: 'guests',
-//         firstName: "",
-//         lastName: "",
-//         email: "",
-//         tel: "",
-//         validationErrors: validationErrors
-//     }); 
-// };  
-
-    exports.showEditGuestForm = (req, res, next) => {
-    const empId = req.params.empId;
-    GuestRepository.getGuestById(empId)
-    .then(emp => {
+    const gstId = req.params.gstId;
+    const validationErrors = [];
+    GuestRepository.getGuestById(gstId)
+        .then(gst => {
             res.render('pages/guest-form', {
-                emp: emp,
-                firstName: emp.firstName,
-                lastName: emp.lastName,
-                email: emp.email,
-                tel: emp.tel,
-                nip: emp.nip,
-                formMode: 'edit',
-                pageTitle: 'Edycja gościa',
-                btnLabel: 'Edytuj gościa',
-                formAction: '/guests/edit',
-                navLocation: 'guests'
+                gst: gst,
+                gstReservations: gst.reservations,
+                formMode: 'showDetails',
+                pageTitle: 'Guest details',
+                formAction: '',
+                navLocation: 'guests',
+                validationErrors: validationErrors
+            });
+        });
+}
+
+exports.addGuest = (req, res, next) => {
+    const gstData = { ...req.body };
+    GuestRepository.createGuest(gstData)
+        .then(result => {
+            res.redirect('/guests');
+        })
+        .catch(err => {
+            err.errors.forEach(e => {
+                if (e.path.includes('email') && e.type == 'unique violation') {
+                    e.message = "Email address is not unique";
+                }
+            });
+            res.render('pages/guest-form', {
+                gst: gstData,
+                pageTitle: 'New guest',
+                formMode: 'createNew',
+                btnLabel: 'Add guest',
+                formAction: '/guests/add',
+                navLocation: 'guests',
+                validationErrors: err.errors
             });
         });
 };
 
-
-
-
-
-  
-  
-
-
-
-
-
-exports.addGuest = (req, res, next) => {
-    const guestData = { ...req.body };
-    GuestRepository.createGuest(guestData)
-        .then( result => {
-            res.redirect('/guests');
-        });
-};
-
 exports.updateGuest = (req, res, next) => {
-    const empId = req.body._id;
-const empData = { ...req.body };
-GuestRepository.updateGuest(empId, empData)
-    .then( result => {
-        res.redirect('/guests');
-    });
+    const gstId = req.body._id;
+    const gstData = { ...req.body };
+
+
+    GuestRepository.updateGuest(gstId, gstData)
+        .then(result => {
+            res.redirect('/guests');
+        })
+        .catch(err => {
+            err.errors.forEach(e => {
+                if (e.path.includes('email') && e.type == 'unique violation') {
+                    e.message = "Email address is not unique";
+                }
+            });
+
+            GuestRepository.getGuestById(gstId)
+                .then(gst => {
+                    res.render('pages/guest-form', {
+                        gst: gstData,
+                        gstReservations: gst.reservations,
+                        pageTitle: 'Edit guest',
+                        formMode: 'edit',
+                        btnLabel: 'Edit guest',
+                        formAction: '/guests/edit',
+                        navLocation: 'guests',
+                        validationErrors: err.errors
+                    });
+                });
+        });
+
+
 };
 
 exports.deleteGuest = (req, res, next) => {
-    const empId = req.params.empId;
-GuestRepository.deleteGuest(empId)
-    .then( () => {
-        res.redirect('/guests');
-    });
+    const gstId = req.params.gstId;
+    GuestRepository.deleteGuest(gstId)
+        .then(() => {
+            res.redirect('/guests');
+        });
 };
