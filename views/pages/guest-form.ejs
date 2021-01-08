@@ -55,7 +55,7 @@
             <table class="table-list">
                 <thead>
                 <tr>
-                    <th>Numer stolika</th>
+                    <th>Numer zamówienia</th>
                     <th>Data</th>
                     <th>Godzina</th>
                     <th>Liczba gości</th>
@@ -63,13 +63,13 @@
                 </thead>
                 <tbody>
                     
-                <% for (let e of gstReservations) { %>
+                <% for (let e of gst.reservations) { %>
                     <% console.log(e) %>
                     <tr>
-                        <td><%= e.firstName %></td>
-                        <td><%= e.firstName %></td>
-                        <td><%= e.firstName %></td>
-                        <td><%= e.firstName %></td>
+                        <td><%= e.orderNumber %></td>
+                        <td><%= e.date %></td>
+                        <td><%= e.time %></td>
+                        <td><%= e.numberOfGuests %></td>
                     </tr>
                 <% } %>
                 </tbody>
