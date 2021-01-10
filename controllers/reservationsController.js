@@ -11,7 +11,8 @@ exports.showReservationList = (req, res, next) => {
             });
         });
 }
-exports.showAddReservationForm = (req, res, next) => {
+
+exports.addReservationForm = (req, res, next) => {
     let allGuests, allTables;
     const validationErrors = [];
     GuestRepository.getGuests()
@@ -21,9 +22,9 @@ exports.showAddReservationForm = (req, res, next) => {
         })
         .then(tbs => {
             allTables = tbs;
-            res.render('pages/rezerwacje-list', {
-                reservation: {},
-                reservationData: {},
+            res.render('pages/rezerwacje-form', {
+                reserv: {},
+                reservData: {},
                 formMode: 'createNew',
                 allGuests: allGuests,
                 allTables: allTables,
@@ -32,9 +33,44 @@ exports.showAddReservationForm = (req, res, next) => {
                 formAction: '/reservations/add',
                 navLocation: 'reservations',
                 validationErrors: validationErrors
-            });
+                });
         });
+    
 }
+
+// narzedzie do debugu - nie przekazuj zadnych danych
+// poza navLocation
+// jesli strona odpali, dziala wszystko poza kontrolerem
+// (jesli wciaz nie dziala to SPRAWDZ ASSOCIATIONS!!!)
+//
+exports.addTry = (req, res, next) => {
+    res.render('pages/debug', { navLocation: "reservations"});
+}
+
+// exports.showAddReservationForm = (req, res, next) => {
+//     let allGuests, allTables;
+//     const validationErrors = [];
+//     GuestRepository.getGuests()
+//         .then(gsts => {
+//             allGuests = gsts;
+//             return TableRepository.getTables();
+//         })
+//         .then(tbs => {
+//             allTables = tbs;
+//             res.render('pages/rezerwacje-list', {
+//                 reservation: {},
+//                 reservationData: {},
+//                 formMode: 'createNew',
+//                 allGuests: allGuests,
+//                 allTables: allTables,
+//                 pageTitle: 'New reservation',
+//                 btnLabel: 'Add reservation',
+//                 formAction: '/reservations/add',
+//                 navLocation: 'reservations',
+//                 validationErrors: validationErrors
+//             });
+//         });
+// }
 
 exports.showEditReservationForm = (req, res, next) => {
     const reservationId = req.params.reservationId;
@@ -67,9 +103,25 @@ exports.showEditReservationForm = (req, res, next) => {
         });
 }
 
+exports.addTry = (req, res, next) => {
+    const reservId = req.params.reservId;
+    let allGuests, allTables;
+    const validationErrors = [];
+    res.render('pages/debug', { navLocation: "reservations"});
+    GuestRepository.getGuests()
+        .then(gsts => {
+            allGuests = gsts;
+            return TableRepository.getTables();
+        })
+          .then(tbs => {
+            allTables = tbs;
+            return ReservationRepository.getReservationById(reservId);
+
+        })
+}
 
 exports.showReservationDetails = (req, res, next) => {
-    const reservationId = req.params.reservationId;
+    const reservId = req.params.reservId;
     let allGuests, allTables;
     const validationErrors = [];
 
@@ -80,13 +132,13 @@ exports.showReservationDetails = (req, res, next) => {
         })
         .then(tbs => {
             allTables = tbs;
-            return ReservationRepository.getReservationById(reservationId);
+            return ReservationRepository.getReservationById(reservId);
 
         })
-        .then(reservation => {
-            res.render('pages/rezerwacje-form', {
-                reservation: reservation,
-                reservationData: reservation,
+        .then(reserv => {
+            res.render('pages/debug', {
+                reserv: reserv,
+                reservData: reserv,
                 formMode: 'showDetails',
                 allGuests: allGuests,
                 allTables: allTables,
@@ -101,10 +153,10 @@ exports.showReservationDetails = (req, res, next) => {
 
 exports.addReservation = (req, res, next) => {
 
-    const reservationData = { ...req.body };
+    const reservData = { ...req.body };
     let allGuests, allTables;
 
-    ReservationRepository.createReservation(reservationData)
+    ReservationRepository.createReservation(reservData)
         .then(result => {
             res.redirect('/reservations');
         })
@@ -117,8 +169,8 @@ exports.addReservation = (req, res, next) => {
                 .then(tbs => {
                     allTables = tbs;
                     res.render('pages/rezerwacje-form', {
-                        reservation: {},
-                        reservationData: reservationData,
+                        reserv: {},
+                        reserv: reservData,
                         formMode: 'createNew',
                         allGuests: allGuests,
                         allTables: allTables,

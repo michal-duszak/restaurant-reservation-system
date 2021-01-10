@@ -23,11 +23,11 @@ exports.getReservationById = (reservationID) => {
     return Reservation.findByPk(reservationID,
         {
             include: [{
-                model: Table,
-                as: 'tables',
+                model: Guest,
+                as: 'guest',
                 include: [{
-                    model: Guest,
-                    as: 'guest'
+                    model: Table,
+                    as: 'table'
                 }]
             }]
         });
@@ -37,12 +37,12 @@ exports.createReservation = (data) => {
     console.log(JSON.stringify(data));
 
     return Reservation.create({
-        res_id: data.res_id,
-        name: data.name,
+        orderNumber: data.orderNumber,
         date:data.date,
         time:data.time,
         numberOfGuests: data.numberOfGuests,
-        tableNumber: data.tableNumber
+        guest_id: data.guest, 
+        table_id: data.table,
     });
 };
 
