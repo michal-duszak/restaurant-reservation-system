@@ -1,7 +1,6 @@
 ﻿<%- include('../fragments/header.ejs') %>
 
 <main>
-    <h2> This is the debug menu! If you see this, you omitted error 500! </h2>
     
     <form class="form" id="form" method="post"  novalidate>
         <input type="hidden" name="_id" value="<%= reserv._id %>">
@@ -9,7 +8,6 @@
             <% if (formMode!='showDetails' ) { %><abbr title="required"
             aria-label="required">*</abbr>
         <% } %></label>
-        <% console.log("BEGINNING OF THE LOG OF GUESTS " + JSON.stringify(allTables) + "THE END OF THE LOG")%>
    
    <select name="guest" id="guest">
 

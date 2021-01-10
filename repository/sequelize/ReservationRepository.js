@@ -5,8 +5,8 @@ const Guest = require('../../model/sequelize/Guest');
 const Table = require('../../model/sequelize/Table');
 
 exports.getReservations = () => {
-    return Reservation.findAll(
-    {include: [
+    return Reservation.findAll({
+        include: [
     {
         model: Guest,
         as: 'guest'
@@ -22,14 +22,15 @@ exports.getReservations = () => {
 exports.getReservationById = (reservationID) => {
     return Reservation.findByPk(reservationID,
         {
-            include: [{
-                model: Guest,
-                as: 'guest',
-                include: [{
+            include: [
+                {
+                    model: Guest,
+                    as: "guest"
+                },
+                {
                     model: Table,
-                    as: 'table'
+                    as: "table"
                 }]
-            }]
         });
 };
 

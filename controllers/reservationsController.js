@@ -43,9 +43,9 @@ exports.addReservationForm = (req, res, next) => {
 // jesli strona odpali, dziala wszystko poza kontrolerem
 // (jesli wciaz nie dziala to SPRAWDZ ASSOCIATIONS!!!)
 //
-exports.addTry = (req, res, next) => {
-    res.render('pages/debug', { navLocation: "reservations"});
-}
+// exports.addTry = (req, res, next) => {
+//     res.render('pages/debug', { navLocation: "reservations"});
+// }
 
 // exports.showAddReservationForm = (req, res, next) => {
 //     let allGuests, allTables;
@@ -73,7 +73,7 @@ exports.addTry = (req, res, next) => {
 // }
 
 exports.showEditReservationForm = (req, res, next) => {
-    const reservationId = req.params.reservationId;
+    const reservId = req.params.reservId;
     let allGuests, allTables;
     const validationErrors = [];
 
@@ -84,7 +84,7 @@ exports.showEditReservationForm = (req, res, next) => {
         })
         .then(tbs => {
             allTables = tbs;
-            return ReservationRepository.getReservationById(reservationId);
+            return ReservationRepository.getReservationById(reservId);
 
         })
         .then(reservation => {
@@ -118,25 +118,40 @@ exports.addTry = (req, res, next) => {
             return ReservationRepository.getReservationById(reservId);
 
         })
+        .then(reserv => {
+            res.render('debug', {
+                reserv: reserv,
+                reservData: reserv,
+                formMode: 'showDetails',
+                allGuests: allGuests,
+                allTables: allTables,
+                pageTitle: 'Reservation details',
+                formAction: '',
+                navLocation: 'reservations',
+                validationErrors: validationErrors
+            });
+        });
 }
+
 
 exports.showReservationDetails = (req, res, next) => {
     const reservId = req.params.reservId;
     let allGuests, allTables;
     const validationErrors = [];
-
+    
     GuestRepository.getGuests()
         .then(gsts => {
             allGuests = gsts;
+            console.log("UGAGUGAUBA" + reservId);
             return TableRepository.getTables();
         })
         .then(tbs => {
             allTables = tbs;
             return ReservationRepository.getReservationById(reservId);
-
         })
         .then(reserv => {
-            res.render('pages/debug', {
+            console.log("UGAGUGAUBA" + reserv)
+            res.render('rezerwacje-form', {
                 reserv: reserv,
                 reservData: reserv,
                 formMode: 'showDetails',
@@ -187,11 +202,11 @@ exports.addReservation = (req, res, next) => {
 };
 
 exports.updateReservation = (req, res, next) => {
-    const reservationId = req.body._id;
+    const reservId = req.body._id;
     const reservationData = { ...req.body };
     let allGuests, allTables;
 
-    ReservationRepository.updateReservation(reservationId, reservationData)
+    ReservationRepository.updateReservation(reservId, reservationData)
         .then(result => {
             res.redirect('/reservations');
         })
@@ -203,7 +218,7 @@ exports.updateReservation = (req, res, next) => {
                 })
                 .then(tbs => {
                     allTables = tbs;
-                    return ReservationRepository.getReservationById(reservationId);
+                    return ReservationRepository.getReservationById(reservId);
 
                 }).then(reservation => {
                     res.render('pages/rezerwacje-form', {
@@ -222,8 +237,8 @@ exports.updateReservation = (req, res, next) => {
 };
 
 exports.deleteReservation = (req, res, next) => {
-    const reservationId = req.params.reservationId;
-    ReservationRepository.deleteReservation(reservationId)
+    const reservId = req.params.reservId;
+    ReservationRepository.deleteReservation(reservId)
         .then(() => {
             res.redirect('/reservations');
         });
