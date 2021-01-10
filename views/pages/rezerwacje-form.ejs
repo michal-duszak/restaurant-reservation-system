@@ -2,8 +2,8 @@
 
 <main>
     
-    <form class="form" id="form" method="post"  novalidate>
-        <input type="hidden" name="_id" value="<%= reserv._id %>">
+    <form method="post" action="<%= formAction %>" id="form" class="form" novalidate >
+        <input type="hidden" name="_id" value="1">
         <label for="guest">Wybierz gościa:
             <% if (formMode!='showDetails' ) { %><abbr title="required"
             aria-label="required">*</abbr>
@@ -12,10 +12,9 @@
    <select name="guest" id="guest">
 
     <% for (let i=0; i<allGuests.length; i++) { let gst = allGuests[i]; %>
-        <option value="<%= gst._id %>" label="<%= gst.email %>"
-            <%=(reserv._id &&
-            gst._id.toString()==reserv.guest._id.toString()) ? 'selected' : '' %>>
-        
+         <% console.log("DUPA" + gst._id) %>
+        <option value="1" label="<%= gst.email %>">
+         
         </option>
         <% } %>
 </select>
@@ -55,7 +54,7 @@ value="<%=reservData.date %>">
 <% } else { %>  
 <input
     class="<%= validationErrors.find(e => e.path.includes('date')) ? 'error-input' : '' %>"
-    type="datetime-local" name="date" id="reservationDate"
+    type="text" name="date" id="reservationDate"
     value="<%= (reserv.date)!=null ? reserv.date : '' %>"
     <%=(formMode=='showDetails' ) ? 'disabled' : '' %>>
 <span id="errorReservationDate" class="errors-text">
@@ -112,9 +111,27 @@ value="<%=reservData.orderNumber %>">
 
     <div class="form-buttons">
         <p id="errorsSummary" class="errors-text errors-summary"></p>
-        <input type="submit" value="Dodaj" class="form-button-submit" />
-        <a href="rezerwacje-list.html" class="form-button-cancel">Anuluj</a>
-    </div>
+       
+                
+            <% if (formMode == 'edit') { %>
+                
+                    <input  type="submit" value="Dodaj" class="form-button-submit">Dodaj</input>
+                
+                <% } %>
+            <% if (formMode == 'showDetails') { %>
+               
+                    <a href="/reservations/edit/<%= reserv._id %>" class="form-button-edit list-actions-button-edit">Edytuj</a>
+               
+                <% } %>
+                <% if (formMode == 'createNew') { %>
+               
+                        <input type="submit" value="<%= btnLabel %>" class="form-button-submit"/>
+               
+                    <% } %>
+            <p id="errorsSummary" class="errors-text errors-summary"></p>
+            
+            <a href="/reservations" class="form-button-cancel">Anuluj</a>
+        </div>      
 </form>
 
 </main>

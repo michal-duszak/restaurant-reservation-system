@@ -87,10 +87,10 @@ exports.showEditReservationForm = (req, res, next) => {
             return ReservationRepository.getReservationById(reservId);
 
         })
-        .then(reservation => {
+        .then(reserv => {
             res.render('pages/rezerwacje-form', {
-                reservation: reservation,
-                reservationData: reservation,
+                reserv: reserv,
+                reservData: reserv,
                 formMode: 'edit',
                 allGuests: allGuests,
                 allTables: allTables,
@@ -151,7 +151,7 @@ exports.showReservationDetails = (req, res, next) => {
         })
         .then(reserv => {
             console.log("UGAGUGAUBA" + reserv)
-            res.render('rezerwacje-form', {
+            res.render('pages/rezerwacje-form', {
                 reserv: reserv,
                 reservData: reserv,
                 formMode: 'showDetails',
@@ -172,7 +172,9 @@ exports.addReservation = (req, res, next) => {
     let allGuests, allTables;
 
     ReservationRepository.createReservation(reservData)
+
         .then(result => {
+            console.log("PRZECHODZI" + JSON.stringifyreservData)
             res.redirect('/reservations');
         })
         .catch(err => {
@@ -203,10 +205,10 @@ exports.addReservation = (req, res, next) => {
 
 exports.updateReservation = (req, res, next) => {
     const reservId = req.body._id;
-    const reservationData = { ...req.body };
+    const reservData = { ...req.body };
     let allGuests, allTables;
 
-    ReservationRepository.updateReservation(reservId, reservationData)
+    ReservationRepository.updateReservation(reservId, reservData)
         .then(result => {
             res.redirect('/reservations');
         })
