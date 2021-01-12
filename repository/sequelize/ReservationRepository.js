@@ -42,8 +42,8 @@ exports.createReservation = (data) => {
         date:data.date,
         time:data.time,
         numberOfGuests: data.numberOfGuests,
-        guest_id: data.guest, 
-        table_id: data.table,
+        guest_id: data.guest_id, 
+        table_id: data.table_id,
     });
 };
 

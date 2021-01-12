@@ -3,17 +3,17 @@
 <main>
     
     <form method="post" action="<%= formAction %>" id="form" class="form" novalidate >
-        <input type="hidden" name="_id" value="1">
+        <input type="hidden" name="_id" value="<%= reserv._id %>">
         <label for="guest">Wybierz gościa:
             <% if (formMode!='showDetails' ) { %><abbr title="required"
             aria-label="required">*</abbr>
         <% } %></label>
    
-   <select name="guest" id="guest">
+   <select name="guest_id" id="guest">
 
     <% for (let i=0; i<allGuests.length; i++) { let gst = allGuests[i]; %>
-         <% console.log("DUPA" + gst._id) %>
-        <option value="1" label="<%= gst.email %>">
+         <% console.log("DUPA cycki" + gst._id) %>
+        <option value="<%= gst._id %>" label="<%= gst.email %>">
          
         </option>
         <% } %>
@@ -23,8 +23,8 @@
     aria-label="required">*</abbr>
 <% } %></label>
 <select class="<%= validationErrors.find(e => e.path.includes('boat_id')) ? 'error-input' : '' %>"
-id="table" name="table" required <%=(formMode=='showDetails' ) ? 'disabled' : '' %>>
-<option value="<%=reservData.boat_id %>" selected label="<%=reservData.table_id %>">--- Wybierz stolik
+id="table" name="table_id" required <%=(formMode=='showDetails' ) ? 'disabled' : '' %>>
+<option value="<%=reservData.table_id %>" selected label="<%=reservData.table_id %>">--- Wybierz stolik
 ---</option>
 <% for (let i=0; i<allTables.length; i++) { let tb=allTables[i]; %>
 <option value="<%= tb._id %>" 
