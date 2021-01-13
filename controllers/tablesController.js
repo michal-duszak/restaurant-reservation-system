@@ -91,3 +91,40 @@ exports.showTableDetails = (req, res, next) => {
             });
         });
 }
+
+
+exports.updateTable = (req, res, next) => {
+    const tableId = req.body._id;
+    const tableData = { ...req.body };
+
+
+    TableRepository.updateTable(tableId, tableData)
+        .then(result => {
+            res.redirect('/tables');
+        })
+        .catch(err => {
+            TableRepository.getTableById(tableId)
+                .then(tablegst => {
+                    res.render('pages/stolik-form', {
+                        table: tableData,
+                        pageTitle: 'Edytuj stolik',
+                        formMode: 'edit',
+                        btnLabel: 'Edytuj',
+                        formAction: '/tables/edit',
+                        navLocation: 'tables',
+                        validationErrors: err.errors
+                    });
+                });
+        });
+
+
+};
+
+
+exports.deleteTable = (req, res, next) => {
+    const tableId = req.params.tableId;
+    TableRepository.deleteTable(tableId)
+        .then(() => {
+            res.redirect('/tables');
+        });
+};
