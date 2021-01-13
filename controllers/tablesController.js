@@ -18,7 +18,33 @@ const ReservationRepository = require('../repository/sequelize/ReservationReposi
         .then(reservations => {
             allReservations = reservations;
             res.render('pages/stolik-form', {
-                navLocation: "tables"
+                table: {},
+                allGuests: allGuests,
+                allReservations: allReservations,
+                navLocation: "tables",
+                formMode: "createNew",
+                btnLabel: "Dodaj",
+                formAction: '/tables/add',
             });
         });
     };
+
+    
+exports.addTable = (req, res, next) => {
+    const tableData = { ...req.body };
+    TableRepository.createTable(tableData)
+        .then(result => {
+            console.log("  create table START LOGA TABLE DATA " + JSON.stringify(tableData) + "KONIEC LOGA")
+            res.redirect('/tables');
+        })
+        .catch(err => {
+            res.render('pages/stolik-form', {
+                table: tableData,
+                pageTitle: 'Nowy stolik',
+                formMode: 'createNew',
+                btnLabel: 'Dodaj',
+                formAction: '/tables/add',
+                navLocation: 'tables',
+            });
+        });
+};
