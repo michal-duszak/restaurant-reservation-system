@@ -4,7 +4,14 @@ const GuestRepository = require('../repository/sequelize/GuestRepository');
 const ReservationRepository = require('../repository/sequelize/ReservationRepository');
 
  exports.showTablesList = (req, res, next) => {
-     res.render('pages/stoliki-list', { navLocation: "tables"});
+     TableRepository.getTables()
+     .then(tables => {
+         res.render('pages/stoliki-list', {
+             tables: tables,
+             navLocation: 'tables'
+         });
+     });
+
  }  
 
  exports.showAddTableForm = (req, res, next) => {

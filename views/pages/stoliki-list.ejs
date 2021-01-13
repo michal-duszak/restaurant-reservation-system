@@ -1,4 +1,4 @@
-<%- include('../fragments/header.ejs') %>
+    <%- include('../fragments/header.ejs') %>
 
     <main>
         <h2>Stoliki</h2>
@@ -8,94 +8,34 @@
                 <tr>
                     <th>Numer stolika</th>
                     <th>Max. liczba osób</th>
+                    <th>Na zewnątrz</th>
 					<th>Akcje</th>
 
                 </tr>
+
+                
             </thead>
 
 
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-
-                    <td class="table-list-actions">
-                        <ul>
-                            
-                        <li><a href="/tables/details" class="list-actions-button-details">Szczegóły</a></li>
-                        <li><a href="stolik-edit1.html" class="list-actions-button-edit">Edytuj</a></li>  
-                        <li><a href="" class="list-actions-button-delete">Usuń</a></li>
-
-                        </ul>
-                </tr>
-
-                <tr>
-                    <td>1</td>
-                    <td>4</td>
-
-                    <td class="table-list-actions">
-                        <ul>
-                            <li><a href="stolik-details1.html" class="list-actions-button-details">Szczegóły</a></li>
-                            <li><a href="stoliki/stolik-edit2.html" class="list-actions-button-edit">Edytuj</a></li>  
-                            <li><a href="" class="list-actions-button-delete">Usuń</a></li>
-
-                        </ul>
-                </tr>
-
-                <tr>
-                    <td>3</td>
-                    <td>5</td>
-
-                    <td class="table-list-actions">
-                        <ul>
-                            <li><a href="stolik-details1.html" class="list-actions-button-details">Szczegóły</a></li>
-                            <li><a href="stoliki/stolik-edit3.html" class="list-actions-button-edit">Edytuj</a></li>  
-                            <li><a href="" class="list-actions-button-delete">Usuń</a></li>
-
-                        </ul>
-                </tr>
-
-                <tr>
-                    <td>4</td>
-                    <td>2</td>
-
-                    <td class="table-list-actions">
-                        <ul>
-                            <li><a href="stolik-details1.html" class="list-actions-button-details">Szczegóły</a></li>
-                            <li><a href="stolik-edit.html" class="list-actions-button-edit">Edytuj</a></li>  
-                            <li><a href="" class="list-actions-button-delete">Usuń</a></li>
-
-                        </ul>
-                </tr>
-               
-                <tr>
-                    <td>5</td>
-                    <td>1</td>
-
-                    <td class="table-list-actions">
-                        <ul>
-                            <li><a href="stolik-details1.html" class="list-actions-button-details">Szczegóły</a></li>
-                            <li><a href="" class="list-actions-button-edit">Edytuj</a></li>  
-                            <li><a href="" class="list-actions-button-delete">Usuń</a></li>
-
-                        </ul>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>8</td>
-
-                    <td class="table-list-actions">
-                        <ul>
-                            <li><a href="stolik-details1.html" class="list-actions-button-details">Szczegóły</a></li>
-                            <li><a href="" class="list-actions-button-edit">Edytuj</a></li>  
-                            <li><a href="" class="list-actions-button-delete">Usuń</a></li>
-
-                        </ul>
-                </tr>
-
-               
-            </tbody>
-        </table>
+                <% for (let table of tables) { %>
+                    <tr>
+                        <td><%= table._id %></td>
+                        <td><%= table.maxGuests %></td>
+                        <td><%= table.outside %></td>
+                        <td class="table-list">
+                    
+                            <ul class="list-actions">
+                                <li><a href="/guests/details/<%=table._id%>" class="list-actions-button-details list-actions-button-details">Szczegóły</a></li>
+                                <li><a href="/guests/edit/<%=table._id%>" class="list-actions-button-edit list-actions-button-details">Edytuj</a></li>
+                                <li><a href="/guests/delete/<%=table._id%>" class="list-actions-button-delete list-actions-button-details">Usuń</a></li>
+                            </ul>
+                        </td>
+                    </tr>
+                <% } %>
+     
+    </tbody>
+                     </table>
 
         <p><a href="tables/add" class="button-add"> Dodaj stolik </a></p>
 
