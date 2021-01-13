@@ -55,3 +55,39 @@ exports.addTable = (req, res, next) => {
             });
         });
 };
+
+
+exports.showTableEdit = (req, res, next) => {
+    const tableId = req.params.tableId;
+
+    const validationErrors = [];
+    TableRepository.getTableById(tableId)
+        .then(table => {
+            console.log("TO JEST ID I COS SIE DIZEJE" + tableId);
+            res.render('pages/stolik-form', {
+                table: table,
+                formMode: 'edit',
+                pageTitle: 'Edytuj stolik',
+                btnLabel: 'Edytuj stolik',
+                formAction: '/tables/edit',
+                navLocation: 'tables',
+                validationErrors: validationErrors
+            });
+        });
+}
+
+exports.showTableDetails = (req, res, next) => {
+    const tableId = req.params.tableId;
+    const validationErrors = [];
+    TableRepository.getTableById(tableId).then(table => {
+            console.log("START OF LOG" + JSON.stringify(table) + "END OF LOG");
+            res.render('pages/stolik-form', {
+                table: table,
+                formMode: 'showDetails',
+                pageTitle: 'Szczegóły stolika',
+                formAction: '',
+                navLocation: 'tables',
+                validationErrors: validationErrors
+            });
+        });
+}
