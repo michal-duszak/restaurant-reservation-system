@@ -4,9 +4,25 @@ function resetErrors(inputs, errorTexts, errorInfo) {
         inputs[i].classList.remove("error-input");
     }
     for (let i = 0; i < errorTexts.length; i++) {
+        console.log(errorTexts[i])
         errorTexts[i].innerText = "";
     }
     errorInfo.innerText = "";
+}
+
+
+function checkDateFormat(value) {
+    let dateReg = /^\d{2}([./-])\d{2}\1\d{4}$/
+    console.log("DATA " + dateReg.test(value) + " WYSZŁO " + value);
+    return dateReg.test(value);
+}
+
+function checkTimeFormat(value) {
+
+    let timeReg = /^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/
+    console.log("TIME " + timeReg.test(value) + " WYSZŁO " + value);
+    return timeReg.test(value);
+
 }
 
 function checkIsNumber(value) {

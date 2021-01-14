@@ -1,8 +1,8 @@
 ﻿<%- include('../fragments/header.ejs') %>
 
 <main>
-    
-    <form method="post" action="<%= formAction %>" id="form" class="form" novalidate >
+    <script type="application/javascript" src="/js/validationReservationForm.js"></script>
+    <form method="post" action="<%= formAction %>" id="form" class="form" novalidate onsubmit="return reservationValidateForm();">
         <input type="hidden" name="_id" value="<%= reserv._id %>">
         <label for="guest">Wybierz gościa:
             <% if (formMode!='showDetails' ) { %><abbr title="required"
@@ -18,6 +18,11 @@
         </option>
         <% } %>
 </select>
+<span id="errorReservationGuest" class="errors-text">
+    <% if (validationErrors.find(e=> e.path.includes('guest_id'))) { %>
+        <%= validationErrors.find(e=> e.path.includes('guest_id')).message %>
+            <% } %>
+</span>
 
 <label for="table">Stolik: <% if (formMode!='showDetails' ) { %><abbr title="required"
     aria-label="required">*</abbr>
@@ -43,6 +48,7 @@ id="table" name="table_id" required <%=(formMode=='showDetails' ) ? 'disabled' :
 <% } %></label>
 <% if (formMode=='createNew' ) { %>
 <input
+placeholder="dd-mm-rrrr"
 class="<%= validationErrors.find(e => e.path.includes('date')) ? 'error-input' : '' %>"
 type="text" name="date" id="reservationDate"
 value="<%=reservData.date %>">
@@ -68,6 +74,7 @@ value="<%=reservData.date %>">
     title="required" aria-label="required">*</abbr>
 <% } %></label>
 <input
+placeholder="np: 15:30"
 class="<%= validationErrors.find(e => e.path.includes('time')) ? 'error-input' : '' %>"
 type="text" name="time" id="reservationTime"
 value="<%=reservData.time %>">
