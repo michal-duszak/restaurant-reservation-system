@@ -1,6 +1,5 @@
 function reservationValidateForm() {
 
-    console.log("ZAUWASZ MNIE")
     const guestInput = document.getElementById('guest');
     const tableInput = document.getElementById('table');
     const dateInput = document.getElementById('reservationDate');
@@ -58,14 +57,14 @@ function reservationValidateForm() {
     if (!checkRequired(numberOfGuestsInput.value)) {
         valid = false;
         numberOfGuestsInput.classList.add("error-input");
-        errorNumberOfGuests.innerText = "This field is required";
+        errorNumberOfGuests.innerText = "To pole jest wymagane";
     } 
 
     
     if (!checkRequired(orderNumberInput.value)) {
         valid = false;
         orderNumberInput.classList.add("error-input");
-        errorOrderNumber.innerText = "This field is required";
+        errorOrderNumber.innerText = "To pole jest wymagane";
     } else if (!checkIsNumber(orderNumberInput.value)) {
         valid = false;
         orderNumberInput.classList.add("error-input");

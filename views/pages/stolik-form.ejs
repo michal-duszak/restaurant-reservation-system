@@ -2,14 +2,17 @@
 <script type="application/javascript" src="/js/validationTableForm.js"></script>
     <main>
         <form method="post" action="<%= formAction %>" id="form" class="form" novalidate onsubmit="return tableValidateForm();">
-            <%= console.log( "TO SA STOLIKI: " + JSON.stringify(table)) %>
             <input type="hidden" name="_id" value="<%= table._id %>">
 
 
             <label for="maxGuests">Maksymalna ilość miejsc:<sup> <abbr title="required">*</abbr>  </sup></label>
             <input required type="text" name="maxGuests" id="maxGuests" placeholder="max 8" value="<%= table.maxGuests %>"
             <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
-            <span id="errorMaxGuests" class="errors-text"></span>
+            <span id="errorMaxGuests" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('maxGuests'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('maxGuests')).message %>
+                        <% } %>
+            </span>
 
             <label for="outside">Czy jest na zewnątrz?<sup> <abbr title="required">*</abbr>  </sup></label>
             <select  name="outside" id="outside" placeholder="tak / nie" value="<%= table.outside %>"
@@ -17,7 +20,11 @@
                 <option value="false">Nie</option>
                 <option value="true">Tak</option>
         </select>
-            <span id="errorOutside" class="errors-text"></span>
+            <span id="errorOutside" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('outside'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('outside')).message %>
+                        <% } %>
+            </span>
 
             
 

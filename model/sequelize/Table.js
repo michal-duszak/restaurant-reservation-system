@@ -10,11 +10,22 @@ const Table = sequelize.define('Table', {
    },
    maxGuests: {
        type: Sequelize.INTEGER,
-       allowNull: false
+       allowNull: false,
+       validate: {
+        notEmpty: {
+            msg: "To pole jest wymagane"
+        }
+    }
+       
    },
     outside: {
         type: Sequelize.BOOLEAN,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "To pole jest wymagane"
+            }
+        }
     }
 });
 

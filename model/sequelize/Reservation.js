@@ -10,20 +10,40 @@ const Reservation = sequelize.define('Reservation', {
     },
     orderNumber: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "To pole jest wymagane"
+            }
+        }
     },
     date: {
         type: Sequelize.STRING,
-        allowNull: false 
+        allowNull: false ,
+        validate: {
+            notEmpty: {
+                msg: "To pole jest wymagane"
+            }
+        }
     },
     time: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "To pole jest wymagane"
+            }
+        }
     },
     
     numberOfGuests: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "To pole jest wymagane"
+            }
+        }
     },
 });
 

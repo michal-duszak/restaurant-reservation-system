@@ -1,5 +1,5 @@
 function tableValidateForm() {
-    console.log("ZAUWASZ MNIE")
+
     const maxGuestsInput = document.getElementById('maxGuests');
     const outsideInput = document.getElementById('outside');
 
@@ -15,13 +15,13 @@ function tableValidateForm() {
     if (!checkRequired(maxGuestsInput.value)) {
         valid = false;
         maxGuestsInput.classList.add("error-input");
-        errorMaxGuests.innerText = "This field is required";
+        errorMaxGuests.innerText = "To pole jest wymagane";
     } 
 
     if (!checkRequired(outsideInput.value)) {
         valid = false;
         outsideInput.classList.add("error-input");
-        errorOutside.innerText = "This field is required";
+        errorOutside.innerText = "To pole jest wymagane";
     }    if (!valid) {
         errorsSummary.innerText = "There are errors on the form";
     }

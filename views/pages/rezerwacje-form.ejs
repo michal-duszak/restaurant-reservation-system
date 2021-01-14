@@ -3,16 +3,15 @@
 <main>
     <script type="application/javascript" src="/js/validationReservationForm.js"></script>
     <form method="post" action="<%= formAction %>" id="form" class="form" novalidate onsubmit="return reservationValidateForm();">
-        <input type="hidden" name="_id" value="<%= reserv._id %>">
+        <input <%=(formMode=='showDetails' ) ? 'disabled' : '' %> type="hidden" name="_id" value="<%= reserv._id %>">
         <label for="guest">Wybierz gościa:
             <% if (formMode!='showDetails' ) { %><abbr title="required"
             aria-label="required">*</abbr>
         <% } %></label>
    
-   <select name="guest_id" id="guest">
+   <select <%=(formMode=='showDetails' ) ? 'disabled' : '' %> name="guest_id" id="guest">
 
     <% for (let i=0; i<allGuests.length; i++) { let gst = allGuests[i]; %>
-         <% console.log("DUPA cycki" + gst._id) %>
         <option value="<%= gst._id %>" label="<%= gst.email %>">
          
         </option>
@@ -49,6 +48,7 @@ id="table" name="table_id" required <%=(formMode=='showDetails' ) ? 'disabled' :
 <% if (formMode=='createNew' ) { %>
 <input
 placeholder="dd-mm-rrrr"
+<%=(formMode=='showDetails' ) ? 'disabled' : '' %>
 class="<%= validationErrors.find(e => e.path.includes('date')) ? 'error-input' : '' %>"
 type="text" name="date" id="reservationDate"
 value="<%=reservData.date %>">
@@ -59,6 +59,7 @@ value="<%=reservData.date %>">
 </span>
 <% } else { %>  
 <input
+<%=(formMode=='showDetails' ) ? 'disabled' : '' %>
     class="<%= validationErrors.find(e => e.path.includes('date')) ? 'error-input' : '' %>"
     type="text" name="date" id="reservationDate"
     value="<%= (reserv.date)!=null ? reserv.date : '' %>"
@@ -74,6 +75,7 @@ value="<%=reservData.date %>">
     title="required" aria-label="required">*</abbr>
 <% } %></label>
 <input
+<%=(formMode=='showDetails' ) ? 'disabled' : '' %>
 placeholder="np: 15:30"
 class="<%= validationErrors.find(e => e.path.includes('time')) ? 'error-input' : '' %>"
 type="text" name="time" id="reservationTime"
@@ -89,6 +91,7 @@ value="<%=reservData.time %>">
     title="required" aria-label="required">*</abbr>
 <% } %></label>
 <input
+<%=(formMode=='showDetails' ) ? 'disabled' : '' %>
 min="1"
 max="8"
 class="<%= validationErrors.find(e => e.path.includes('numberOfGuests')) ? 'error-input' : '' %>"
@@ -104,6 +107,7 @@ value="<%=reservData.numberOfGuests %>">
     title="required" aria-label="required">*</abbr>
 <% } %></label>
 <input
+<%=(formMode=='showDetails' ) ? 'disabled' : '' %>
 class="<%= validationErrors.find(e => e.path.includes('orderNumber')) ? 'error-input' : '' %>"
 type="number" name="orderNumber" id="reservationOrderNumber"
 value="<%=reservData.orderNumber %>">

@@ -28,8 +28,8 @@ exports.addReservationForm = (req, res, next) => {
                 formMode: 'createNew',
                 allGuests: allGuests,
                 allTables: allTables,
-                pageTitle: 'New reservation',
-                btnLabel: 'Add reservation',
+                pageTitle: 'Nowa rezerwacja',
+                btnLabel: 'Dodaj rezerwację',
                 formAction: '/reservations/add',
                 navLocation: 'reservations',
                 validationErrors: validationErrors
@@ -38,39 +38,7 @@ exports.addReservationForm = (req, res, next) => {
     
 }
 
-// narzedzie do debugu - nie przekazuj zadnych danych
-// poza navLocation
-// jesli strona odpali, dziala wszystko poza kontrolerem
-// (jesli wciaz nie dziala to SPRAWDZ ASSOCIATIONS!!!)
-//
-// exports.addTry = (req, res, next) => {
-//     res.render('pages/debug', { navLocation: "reservations"});
-// }
 
-// exports.showAddReservationForm = (req, res, next) => {
-//     let allGuests, allTables;
-//     const validationErrors = [];
-//     GuestRepository.getGuests()
-//         .then(gsts => {
-//             allGuests = gsts;
-//             return TableRepository.getTables();
-//         })
-//         .then(tbs => {
-//             allTables = tbs;
-//             res.render('pages/rezerwacje-list', {
-//                 reservation: {},
-//                 reservationData: {},
-//                 formMode: 'createNew',
-//                 allGuests: allGuests,
-//                 allTables: allTables,
-//                 pageTitle: 'New reservation',
-//                 btnLabel: 'Add reservation',
-//                 formAction: '/reservations/add',
-//                 navLocation: 'reservations',
-//                 validationErrors: validationErrors
-//             });
-//         });
-// }
 
 exports.showEditReservationForm = (req, res, next) => {
     const reservId = req.params.reservId;
@@ -94,8 +62,8 @@ exports.showEditReservationForm = (req, res, next) => {
                 formMode: 'edit',
                 allGuests: allGuests,
                 allTables: allTables,
-                pageTitle: 'Edit reservation',
-                btnLabel: 'Edit reservation',
+                pageTitle: 'Edytuj rezerwację',
+                btnLabel: 'Edytuj rezerwację',
                 formAction: '/reservations/edit',
                 navLocation: 'reservations',
                 validationErrors: validationErrors
@@ -125,7 +93,7 @@ exports.addTry = (req, res, next) => {
                 formMode: 'showDetails',
                 allGuests: allGuests,
                 allTables: allTables,
-                pageTitle: 'Reservation details',
+                pageTitle: 'Szczegóły rezerwacji',
                 formAction: '',
                 navLocation: 'reservations',
                 validationErrors: validationErrors
@@ -142,7 +110,6 @@ exports.showReservationDetails = (req, res, next) => {
     GuestRepository.getGuests()
         .then(gsts => {
             allGuests = gsts;
-            console.log("UGAGUGAUBA" + reservId);
             return TableRepository.getTables();
         })
         .then(tbs => {
@@ -150,14 +117,13 @@ exports.showReservationDetails = (req, res, next) => {
             return ReservationRepository.getReservationById(reservId);
         })
         .then(reserv => {
-            console.log("UGAGUGAUBA" + reserv)
             res.render('pages/rezerwacje-form', {
                 reserv: reserv,
                 reservData: reserv,
                 formMode: 'showDetails',
                 allGuests: allGuests,
                 allTables: allTables,
-                pageTitle: 'Reservation details',
+                pageTitle: 'Szczegóły rezerwacji',
                 formAction: '',
                 navLocation: 'reservations',
                 validationErrors: validationErrors
@@ -174,7 +140,6 @@ exports.addReservation = (req, res, next) => {
     ReservationRepository.createReservation(reservData)
 
         .then(result => {
-            console.log("PRZECHODZI" + JSON.stringifyreservData)
             res.redirect('/reservations');
         })
         .catch(err => {
@@ -191,8 +156,8 @@ exports.addReservation = (req, res, next) => {
                         formMode: 'createNew',
                         allGuests: allGuests,
                         allTables: allTables,
-                        pageTitle: 'New reservation',
-                        btnLabel: 'Add reservation',
+                        pageTitle: 'Nowa rezerwacja',
+                        btnLabel: 'Dodaj rezerwację',
                         formAction: '/reservations/add',
                         navLocation: 'reservations',
                         validationErrors: err.errors

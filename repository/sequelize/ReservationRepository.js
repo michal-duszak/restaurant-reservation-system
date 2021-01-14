@@ -17,7 +17,7 @@ exports.getReservations = () => {
     }]
 });
 };
-//to idzie do findall jak cos pojdize nie tak
+
 
 exports.getReservationById = (reservationID) => {
     return Reservation.findByPk(reservationID,
@@ -35,7 +35,7 @@ exports.getReservationById = (reservationID) => {
 };
 
 exports.createReservation = (data) => {
-    console.log(JSON.stringify(data));
+    
 
     return Reservation.create({
         orderNumber: data.orderNumber,

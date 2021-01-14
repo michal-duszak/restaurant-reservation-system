@@ -6,24 +6,40 @@
         <form method="post" action="<%= formAction %>" id="form" class="form" novalidate onsubmit="return guestValidateForm();">
             <input type="hidden" name="_id" value="<%= gst._id %>">
             <label for="firstName">Imię:<sup> <abbr title="required">*</abbr>  </sup></label>
-            <input required type="text" name="firstName" id="firstName" placeholder="2-60 znaków" value="<%= gst.firstName %>"
+            <input class="<%= validationErrors.find(e => e.path.includes('firstName')) ? 'error-input' : '' %>" required type="text" name="firstName" id="firstName" placeholder="2-60 znaków" value="<%= gst.firstName %>"
             <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
-            <span id="errorFirstName" class="errors-text"></span>
+            <span id="errorFirstName" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('firstName'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('firstName')).message %>
+                        <% } %>
+            </span>
             
             <label for="lastName">Nazwisko:<sup> <abbr title="required">*</abbr>  </sup></label>
-            <input required type="text" name="lastName" id="lastName" placeholder="2-60 znaków" value="<%= gst.lastName %>"
+            <input class="<%= validationErrors.find(e => e.path.includes('lastName')) ? 'error-input' : '' %>" required type="text" name="lastName" id="lastName" placeholder="2-60 znaków" value="<%= gst.lastName %>"
             <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
-            <span id="errorLastName" class="errors-text"></span>
+            <span id="errorLastName" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('lastName'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('lastName')).message %>
+                        <% } %>
+            </span>
             
             <label for="tel">Numer Telefonu:<sup> <abbr title="required">*</abbr>  </sup></label>
-            <input required type="text"  name="tel" id="tel" placeholder="np 690700420" value="<%= gst.tel %>"
+            <input class="<%= validationErrors.find(e => e.path.includes('tel')) ? 'error-input' : '' %>" required type="text"  name="tel" id="tel" placeholder="np 690700420" value="<%= gst.tel %>"
             <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
-            <span id="errorTelNumber" class="errors-text"></span>
+            <span id="errorTelNumber" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('tel'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('tel')).message %>
+                        <% } %>
+            </span>
             
             <label for="email">E-Mail: <sup> <abbr title="required">*</abbr>  </sup></label>
-            <input type="text" name="email" id="email" placeholder="np vietstreet@food.pl" value="<%= gst.email %>"
+            <input class="<%= validationErrors.find(e => e.path.includes('email')) ? 'error-input' : '' %>" type="text" name="email" id="email" placeholder="np vietstreet@food.pl" value="<%= gst.email %>"
             <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
-            <span id="errorEmail" class="errors-text"></span>
+            <span id="errorEmail" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('email'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('email')).message %>
+                        <% } %>
+            </span>
     
             
             <div class="form-buttons">

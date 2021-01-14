@@ -18,48 +18,48 @@ function guestValidateForm() {
     if (!checkRequired(firstNameInput.value)) {
         valid = false;
         firstNameInput.classList.add("error-input");
-        errorFirstName.innerText = "This field is required";
+        errorFirstName.innerText = "To pole jest wymagane";
     } else if (!checkTextLengthRange(firstNameInput.value, 2, 60)) {
         valid = false;
         firstNameInput.classList.add("error-input");
-        errorFirstName.innerText = "This field must contain 2-60 characters";
+        errorFirstName.innerText = "To pole musi zawierać 2-60 znaków";
     }
 
     if (!checkRequired(lastNameInput.value)) {
         valid = false;
         lastNameInput.classList.add("error-input");
-        errorLastName.innerText = "This field is required";
+        errorLastName.innerText = "To pole jest wymagane";
     } else if (!checkTextLengthRange(lastNameInput.value, 2, 60)) {
         valid = false;
         lastNameInput.classList.add("error-input");
-        errorLastName.innerText = "This field must contain 2-60 characters";
+        errorLastName.innerText = "To pole musi zawierać 2-60 znaków";
     }
 
     if (!checkRequired(emailInput.value)) {
         valid = false;
         emailInput.classList.add("error-input");
-        errorEmail.innerText = "This field is required";
+        errorEmail.innerText = "To pole jest wymagane";
     } else if (!checkTextLengthRange(emailInput.value, 5, 60)) {
         valid = false;
         emailInput.classList.add("error-input");
-        errorEmail.innerText = "This field must contain 5-60 characters";
+        errorEmail.innerText = "To pole musi zawierać 5-60 znaków";
     } else if (!checkEmail(emailInput.value)) {
         valid = false;
         emailInput.classList.add("error-input");
-        errorEmail.innerText = "Invalid e-mail address";
+        errorEmail.innerText = "Nieprawidłowy adres email";
     }
 
     if (!checkRequired(tel.value)) {
         valid = false;
         telNumberInput.classList.add("error-input");
-        errorTelNumber.innerText = "This field is required";
+        errorTelNumber.innerText = "To pole jest wymagane";
     } else if (!checkIsNumber(tel.value)) {
         valid = false;
         emailInput.classList.add("error-input");
         errorTelNumber.innerText = "This field must contain a proper number!";
     }
     if (!valid) {
-        errorsSummary.innerText = "There are errors on the form";
+        errorsSummary.innerText = "W formularzu są błędy";
     }
 
     return valid;

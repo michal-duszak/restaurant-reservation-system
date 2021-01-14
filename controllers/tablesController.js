@@ -32,6 +32,7 @@ const ReservationRepository = require('../repository/sequelize/ReservationReposi
                 formMode: "createNew",
                 btnLabel: "Dodaj",
                 formAction: '/tables/add',
+                validationErrors: validationErrors
             });
         });
     };
@@ -41,7 +42,6 @@ exports.addTable = (req, res, next) => {
     const tableData = { ...req.body };
     TableRepository.createTable(tableData)
         .then(result => {
-            console.log("  create table START LOGA TABLE DATA " + JSON.stringify(tableData) + "KONIEC LOGA")
             res.redirect('/tables');
         })
         .catch(err => {
@@ -63,7 +63,6 @@ exports.showTableEdit = (req, res, next) => {
     const validationErrors = [];
     TableRepository.getTableById(tableId)
         .then(table => {
-            console.log("TO JEST ID I COS SIE DIZEJE" + tableId);
             res.render('pages/stolik-form', {
                 table: table,
                 formMode: 'edit',
@@ -80,7 +79,6 @@ exports.showTableDetails = (req, res, next) => {
     const tableId = req.params.tableId;
     const validationErrors = [];
     TableRepository.getTableById(tableId).then(table => {
-            console.log("START OF LOG" + JSON.stringify(table) + "END OF LOG");
             res.render('pages/stolik-form', {
                 table: table,
                 formMode: 'showDetails',
