@@ -18,6 +18,8 @@ const guestApiRouter = require('./routes/api/GuestApiRoute');
 app.use('/api/guests', guestApiRouter);
 const reservationApiRouter = require('./routes/api/ReservationApiRoute');
 app.use('/api/reservations', reservationApiRouter);
+const tableApiRouter = require('./routes/api/TableApiRoute');
+app.use('/api/tables', tableApiRouter);
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
