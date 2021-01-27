@@ -16,7 +16,6 @@ const Table = sequelize.define('Table', {
             msg: "To pole jest wymagane"
         }
     }
-       
    },
     outside: {
         type: Sequelize.BOOLEAN,

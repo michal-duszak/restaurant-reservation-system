@@ -52,6 +52,7 @@ exports.addTable = (req, res, next) => {
                 btnLabel: 'Dodaj',
                 formAction: '/tables/add',
                 navLocation: 'tables',
+                validationErrors: err.errors
             });
         });
 };

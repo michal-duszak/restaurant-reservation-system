@@ -110,7 +110,8 @@ value="<%=reservData.numberOfGuests %>">
 <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
 class="<%= validationErrors.find(e => e.path.includes('orderNumber')) ? 'error-input' : '' %>"
 type="number" name="orderNumber" id="reservationOrderNumber"
-value="<%=reservData.orderNumber %>">
+value="<%=reservData.orderNumber %>"
+max="99" min="1">
 <span id="errorReservationOrderNumber" class="errors-text">
 <% if (validationErrors.find(e=> e.path.includes('orderNumber'))) { %>
     <%= validationErrors.find(e=> e.path.includes('orderNumber')).message %>

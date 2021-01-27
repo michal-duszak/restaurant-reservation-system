@@ -2,7 +2,6 @@
     <main>
         <script type="application/javascript" src="/js/validationGuestForm.js"></script>
         <h2><%= pageTitle %></h2>
-        <% console.log("BEGINNING OF THE LOG OF GUESTS " + JSON.stringify(gst._id) + "THE END OF THE LOG")%>
         <form method="post" action="<%= formAction %>" id="form" class="form" novalidate onsubmit="return guestValidateForm();">
             <input type="hidden" name="_id" value="<%= gst._id %>">
             <label for="firstName">Imię:<sup> <abbr title="required">*</abbr>  </sup></label>

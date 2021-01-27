@@ -68,7 +68,11 @@ function reservationValidateForm() {
     } else if (!checkIsNumber(orderNumberInput.value)) {
         valid = false;
         orderNumberInput.classList.add("error-input");
-        errorOrderNumber.innerText = "Oczekuję cyfry!";
+        errorOrderNumber.innerText = "Oczekuję liczby!";
+    } else if (!checkNumberRange(orderNumberInput.value, 1, 99)) {
+        valid = false;
+        orderNumberInput.classList.add("error-input");
+        errorOrderNumber.innerText = "Proszę podać liczbę w zakresie 1-99";
     }
     if (!valid) {
         errorsSummary.innerText = "Formularz zawiera błędy!";

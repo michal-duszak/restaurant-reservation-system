@@ -42,7 +42,15 @@ const Reservation = sequelize.define('Reservation', {
         validate: {
             notEmpty: {
                 msg: "To pole jest wymagane"
-            }
+            },
+            isInt: {
+                msg: "To pole jest wymagane"
+            },
+            maxCustom(value) {
+                if (value > 8) {
+                  throw new Error('SSSS');
+                }
+              }
         }
     },
 });
