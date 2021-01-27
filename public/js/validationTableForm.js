@@ -16,14 +16,18 @@ function tableValidateForm() {
         valid = false;
         maxGuestsInput.classList.add("error-input");
         errorMaxGuests.innerText = "To pole jest wymagane";
-    } 
+    }  else if (!checkNumberRange(maxGuestsInput.value, 1, 8)){
+        valid = false;
+        maxGuestsInput.classList.add("error-input");
+        errorMaxGuests.innerText = "Podaj właściwą liczbę (od 1 do 8)!";
+    }
 
     if (!checkRequired(outsideInput.value)) {
         valid = false;
         outsideInput.classList.add("error-input");
         errorOutside.innerText = "To pole jest wymagane";
     }    if (!valid) {
-        errorsSummary.innerText = "There are errors on the form";
+        errorsSummary.innerText = "W formularzu są błędy";
     }
 
     return valid;
