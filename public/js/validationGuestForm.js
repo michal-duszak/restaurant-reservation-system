@@ -1,5 +1,4 @@
 function guestValidateForm() {
-    console.log("ZAUWASZ MNIE")
     const firstNameInput = document.getElementById('firstName');
     const lastNameInput = document.getElementById('lastName');
     const telNumberInput = document.getElementById('tel');
@@ -55,9 +54,13 @@ function guestValidateForm() {
         errorTelNumber.innerText = "To pole jest wymagane";
     } else if (!checkIsNumber(tel.value)) {
         valid = false;
-        emailInput.classList.add("error-input");
-        errorTelNumber.innerText = "This field must contain a proper number!";
-    }
+        telNumberInput.classList.add("error-input");
+        errorTelNumber.innerText = "Pole musi zawierać prawidłowy numer telefonu!";
+    } else if (!checkTextLengthRange(telNumberInput.value, 9, 60)) {
+        valid = false;
+        telNumberInput.classList.add("error-input");
+        errorTelNumber.innerText = "Pole musi zawierać prawidłowy numer telefonu!";
+    } 
     if (!valid) {
         errorsSummary.innerText = "W formularzu są błędy";
     }

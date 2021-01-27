@@ -26,7 +26,7 @@ function checkIsNumber(value) {
     value = value.toString();
     value.replace("-", "");
     value.replace(" ", "");
-    let reg = new RegExp('^[0-9]+$');
+    let reg = new RegExp('^[0-9+]+$');
     return reg.test(value);
 }
 

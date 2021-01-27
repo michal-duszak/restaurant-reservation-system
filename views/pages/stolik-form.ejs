@@ -52,6 +52,35 @@
             </div>
 
         </form>
+        <% if (formMode == 'showDetails' || formMode == 'edit') { %>
+            
+            <h2>
+                Szczegóły rezerwacji
+            </h2>
+            <table class="table-list">
+                <thead>
+                <tr>
+                    <th>Numer zamówienia</th>
+                    <th>Data</th>
+                    <th>Godzina</th>
+                    <th>Liczba gości</th>
+                </tr>
+                </thead>
+                <tbody>
+                    
+                <% for (let e of table.reservations) { %>
+                    <% console.log(e) %>
+                    <tr>
+                        <td><%= e.orderNumber %></td>
+                        <td><%= e.date %></td>
+                        <td><%= e.time %></td>
+                        <td><%= e.numberOfGuests %></td>
+                    </tr>
+                <% } %>
+                </tbody>
+            </table>
+            <% } %>
+            
 
     </main>
  
