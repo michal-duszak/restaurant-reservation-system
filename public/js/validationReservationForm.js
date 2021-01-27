@@ -24,19 +24,19 @@ function reservationValidateForm() {
     if (!checkRequired(guestInput.value)) {
         valid = false;
         guestInput.classList.add("error-input");
-        errorGuest.innerText = "This field is required";
+        errorGuest.innerText = "Pole jest wymagane";
     }
 
     if (!checkRequired(tableInput.value)) {
         valid = false;
         tableInput.classList.add("error-input");
-        errorTable.innerText = "This field is required";
+        errorTable.innerText = "Pole jest wymagane";
     }
 
     if (!checkRequired(dateInput.value)) {
         valid = false;
         dateInput.classList.add("error-input");
-        errorDate.innerText = "This field is required";
+        errorDate.innerText = "Pole jest wymagane";
     } else if (!checkDateFormat(dateInput.value)) { 
         valid = false;
         dateInput.classList.add("error-input");
@@ -46,11 +46,11 @@ function reservationValidateForm() {
     if (!checkRequired(timeInput.value)) {
         valid = false;
         timeInput.classList.add("error-input");
-        errorTime.innerText = "This field is required";
+        errorTime.innerText = "Pole jest wymagane";
     } else if (!checkTimeFormat(timeInput.value)) {
         valid = false;
         timeInput.classList.add("error-input");
-        errorTime.innerText = "Zły format godziny   ! Oczekuję gg:mm";
+        errorTime.innerText = "Zły format godziny! Oczekuję gg:mm";
         
     }
 
@@ -71,7 +71,7 @@ function reservationValidateForm() {
         errorOrderNumber.innerText = "Oczekuję cyfry!";
     }
     if (!valid) {
-        errorsSummary.innerText = "There are errors on the form";
+        errorsSummary.innerText = "Formularz zawiera błędy!";
     }
 
     return valid;
