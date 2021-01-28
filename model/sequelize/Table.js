@@ -14,7 +14,18 @@ const Table = sequelize.define('Table', {
        validate: {
         notEmpty: {
             msg: "To pole jest wymagane"
-        }
+        },
+        isMoreThanEight(value) {
+            if (value > 8) {
+              throw new Error('Podaj właściwą liczbę (od 1 do 8)!');
+            }
+          },
+          isLessThanEight(value) {
+            if (value < 1) {
+                console.log(value)
+              throw new Error('Podaj właściwą liczbę (od 1 do 8)!');
+            }
+          }    
     }
    },
     outside: {
