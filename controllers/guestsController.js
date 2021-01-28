@@ -102,6 +102,7 @@ exports.updateGuest = (req, res, next) => {
 
             GuestRepository.getGuestById(gstId)
                 .then(gst => {
+                    
                     res.render('pages/guest-form', {
                         gst: gstData,
                         gstReservations: gst.reservations,

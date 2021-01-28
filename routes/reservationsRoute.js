@@ -10,7 +10,6 @@ router.get('/edit/:reservId', reservationController.showEditReservationForm);
 router.get('/details/:reservId', reservationController.showReservationDetails);
 
 //router.get('/details/:reservId', reservationController.showReservationDetails);
-
 router.post('/add', reservationController.addReservation);
 router.post('/edit', reservationController.updateReservation);
 router.get('/delete/:reservId', reservationController.deleteReservation);

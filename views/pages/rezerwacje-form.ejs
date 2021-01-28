@@ -33,7 +33,7 @@ id="table" name="table_id" required <%=(formMode=='showDetails' ) ? 'disabled' :
 <% for (let i=0; i<allTables.length; i++) { let tb=allTables[i]; %>
 <option value="<%= tb._id %>" 
     label="<%= tb._id %>" <%=(reserv._id &&
-    tb._id.toString()==reserv.table._id.toString()) ? 'selected' : '' %>></option>
+    tb._id.toString()==reserv.table_id.toString()) ? 'selected' : '' %>></option>
 <% } %>
 </select>
 <span id="errorReservationTable" class="errors-text">

@@ -107,8 +107,7 @@ exports.updateTable = (req, res, next) => {
         .catch(err => {
 
             TableRepository.getTableById(tableId)
-                .then(tablegst => {
-                    console.log("TO JEST BLAD" + JSON.stringify(tablegst))
+                .then(tablegst => {  
                     res.render('pages/stolik-form', {
                         table: tableData,
                         tableR: tablegst.reservations,

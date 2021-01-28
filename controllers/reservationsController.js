@@ -149,7 +149,6 @@ exports.addReservation = (req, res, next) => {
                     return TableRepository.getTables();
                 })
                 .then(tbs => {
-                    console.log(`GOT GUESTS AND THIS IS THE ERRORS: ${JSON.stringify(reservData)}`)
                     allTables = tbs;
                     res.render('pages/rezerwacje-form', {
                         reserv: {},
@@ -189,13 +188,13 @@ exports.updateReservation = (req, res, next) => {
                     return ReservationRepository.getReservationById(reservId);
 
                 }).then(reservation => {
-                    res.render('pages/rezerwacje-form', {
-                        reservation: reservation,
+                         res.render('pages/rezerwacje-form', {
+                        reserv: reservData,
                         formMode: 'edit',
                         allGuests: allGuests,
                         allTables: allTables,
-                        pageTitle: 'Edit reservation',
-                        btnLabel: 'Edit reservation',
+                        pageTitle: 'Edytuj rezerwacje',
+                        btnLabel: 'Edytuj',
                         formAction: '/reservations/edit',
                         navLocation: 'reservations',
                         validationErrors: err.errors
