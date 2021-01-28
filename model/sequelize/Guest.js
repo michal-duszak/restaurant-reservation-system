@@ -43,9 +43,19 @@ const Guest = sequelize.define('Guest', {
             msg: "Pole jest wymagane"
         },
         len: {
-            args: [8,60],   
-            msg: "Pole powinno zawierać od 8 do 60 znaków"
-        }
+            args: [9,60],   
+            msg: "Wymagany prawidłowy numer telefonu"
+        },
+        isNumber(value) {
+            value = value.toString();
+            value.replace("-", "");
+            value.replace(" ", "");
+            let reg = new RegExp('^[0-9+]+$');
+            if (!reg.test(value)) {
+                throw new Error("Pole musi zawierać prawidłowy numer telefonu!");
+
+            }
+          } 
     }
 },
    email: {
@@ -58,10 +68,10 @@ const Guest = sequelize.define('Guest', {
         },
         len: {
             args: [5,60],   
-            msg: "Pole powinno zawierać od 2 do 60 znaków"
+            msg: "To pole musi zawierać 5-60 znaków"
         },
         isEmail: {
-            msg: 'Pole powinno zawierać prawidłowy adres email'
+            msg: 'Nieprawidłowy adres email'
         }
     }
 },
