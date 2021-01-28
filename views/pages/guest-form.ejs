@@ -3,7 +3,7 @@
         <script type="application/javascript" src="/js/validationGuestForm.js"></script>
         <h2><%= pageTitle %></h2>
         <form method="post" action="<%= formAction %>" id="form" class="form" novalidate onsubmit="return guestValidateForm();">
-            <input type="hidden" name="_id" value="<%= gst._id %>">
+            <input type="hidden" name="_id" id="_id" value="<%= gst._id %>">
             <label for="firstName">Imię:<sup> <abbr title="required">*</abbr>  </sup></label>
             <input class="<%= validationErrors.find(e => e.path.includes('firstName')) ? 'error-input' : '' %>" required type="text" name="firstName" id="firstName" placeholder="2-60 znaków" value="<%= gst.firstName %>"
             <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
@@ -79,7 +79,7 @@
                 </thead>
                 <tbody>
                     
-                <% for (let e of gst.reservations) { %>
+                <% for (let e of gstReservations) { %>
                     <% console.log(e) %>
                     <tr>
                         <td><%= e.orderNumber %></td>
