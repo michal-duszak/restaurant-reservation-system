@@ -149,6 +149,7 @@ exports.addReservation = (req, res, next) => {
                     return TableRepository.getTables();
                 })
                 .then(tbs => {
+                    console.log(`GOT GUESTS AND THIS IS THE ERRORS: ${JSON.stringify(reservData)}`)
                     allTables = tbs;
                     res.render('pages/rezerwacje-form', {
                         reserv: {},

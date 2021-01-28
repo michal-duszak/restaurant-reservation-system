@@ -58,7 +58,11 @@ function reservationValidateForm() {
         valid = false;
         numberOfGuestsInput.classList.add("error-input");
         errorNumberOfGuests.innerText = "To pole jest wymagane";
-    } 
+    } else if (!checkNumberRange(numberOfGuestsInput.value, 1, 8)) {
+        valid = false;
+        numberOfGuestsInput.classList.add("error-input");
+        errorNumberOfGuests.innerText = "Oczekuję liczby w przedziale od 1 do 8!";
+    }
 
     
     if (!checkRequired(orderNumberInput.value)) {

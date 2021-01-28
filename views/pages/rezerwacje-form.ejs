@@ -26,9 +26,9 @@
 <label for="table">Stolik: <% if (formMode!='showDetails' ) { %><abbr title="required"
     aria-label="required">*</abbr>
 <% } %></label>
-<select class="<%= validationErrors.find(e => e.path.includes('boat_id')) ? 'error-input' : '' %>"
+<select class="<%= validationErrors.find(e => e.path.includes('table_id')) ? 'error-input' : '' %>"
 id="table" name="table_id" required <%=(formMode=='showDetails' ) ? 'disabled' : '' %>>
-<option value="<%=reservData.table_id %>" selected label="<%=reservData.table_id %>">--- Wybierz stolik
+<option value="<%=reserv.table_id %>" selected label="<%=reserv.table_id %>">--- Wybierz stolik
 ---</option>
 <% for (let i=0; i<allTables.length; i++) { let tb=allTables[i]; %>
 <option value="<%= tb._id %>" 
@@ -51,7 +51,7 @@ placeholder="dd-mm-rrrr"
 <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
 class="<%= validationErrors.find(e => e.path.includes('date')) ? 'error-input' : '' %>"
 type="text" name="date" id="reservationDate"
-value="<%=reservData.date %>">
+value="<%=reserv.date %>">
 <span id="errorReservationDate" class="errors-text">
 <% if (validationErrors.find(e=> e.path.includes('date'))) { %>
     <%= validationErrors.find(e=> e.path.includes('date')).message %>
@@ -79,7 +79,7 @@ value="<%=reservData.date %>">
 placeholder="np: 15:30"
 class="<%= validationErrors.find(e => e.path.includes('time')) ? 'error-input' : '' %>"
 type="text" name="time" id="reservationTime"
-value="<%=reservData.time %>">
+value="<%=reserv.time %>">
 <span id="errorReservationTime" class="errors-text">
 <% if (validationErrors.find(e=> e.path.includes('time'))) { %>
     <%= validationErrors.find(e=> e.path.includes('time')).message %>
@@ -96,7 +96,7 @@ min="1"
 max="8"
 class="<%= validationErrors.find(e => e.path.includes('numberOfGuests')) ? 'error-input' : '' %>"
 type="number" name="numberOfGuests" id="reservationNumberOfGuests"
-value="<%=reservData.numberOfGuests %>">
+value="<%=reserv.numberOfGuests %>">
 <span id="errorReservationNumberOfGuests" class="errors-text">
 <% if (validationErrors.find(e=> e.path.includes('numberOfGuests'))) { %>
     <%= validationErrors.find(e=> e.path.includes('numberOfGuests')).message %>
@@ -110,7 +110,7 @@ value="<%=reservData.numberOfGuests %>">
 <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
 class="<%= validationErrors.find(e => e.path.includes('orderNumber')) ? 'error-input' : '' %>"
 type="number" name="orderNumber" id="reservationOrderNumber"
-value="<%=reservData.orderNumber %>"
+value="<%=reserv.orderNumber %>"
 max="99" min="1">
 <span id="errorReservationOrderNumber" class="errors-text">
 <% if (validationErrors.find(e=> e.path.includes('orderNumber'))) { %>
