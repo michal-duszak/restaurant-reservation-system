@@ -26,6 +26,7 @@ const ReservationRepository = require('../repository/sequelize/ReservationReposi
             allReservations = reservations;
             res.render('pages/stolik-form', {
                 table: {},
+                tableR: {},
                 allGuests: allGuests,
                 allReservations: allReservations,
                 navLocation: "tables",
@@ -66,6 +67,7 @@ exports.showTableEdit = (req, res, next) => {
         .then(table => {
             res.render('pages/stolik-form', {
                 table: table,
+                tableR: table.reservations,
                 formMode: 'edit',
                 pageTitle: 'Edytuj stolik',
                 btnLabel: 'Edytuj stolik',
@@ -82,6 +84,7 @@ exports.showTableDetails = (req, res, next) => {
     TableRepository.getTableById(tableId).then(table => {
             res.render('pages/stolik-form', {
                 table: table,
+                tableR: table.reservations,
                 formMode: 'showDetails',
                 pageTitle: 'Szczegóły stolika',
                 formAction: '',
@@ -102,10 +105,13 @@ exports.updateTable = (req, res, next) => {
             res.redirect('/tables');
         })
         .catch(err => {
+
             TableRepository.getTableById(tableId)
                 .then(tablegst => {
+                    console.log("TO JEST BLAD" + JSON.stringify(tablegst))
                     res.render('pages/stolik-form', {
                         table: tableData,
+                        tableR: tablegst.reservations,
                         pageTitle: 'Edytuj stolik',
                         formMode: 'edit',
                         btnLabel: 'Edytuj',
